@@ -1,6 +1,6 @@
 # Tarea: Sistema de Matriculación
 ## Profesor: Andrés Rubio del Río
-## Alumno:
+## Alumno: Adam Barhoumi Tnaifer
 
 Tu tarea va a consistir en modelar la gestión del **sistema de matriculación del instituto IES Al-Ándalus**. 
 Después de todas las especificaciones y requerimientos anotados, en este **primer spring** de la aplicación 
