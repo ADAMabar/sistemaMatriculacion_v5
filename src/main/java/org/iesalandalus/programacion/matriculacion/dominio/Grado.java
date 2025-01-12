@@ -1,7 +1,7 @@
 package org.iesalandalus.programacion.matriculacion.dominio;
 
 public enum Grado {
-    GDCFGB("Grado.GDCFGB"), GDCFGM("Grado.GDCFGM"), GDCFGS("Grado.GDCFGS");
+    GDCFGB("Grado D Ciclo Formativo de Grado Básico"), GDCFGM("Grado D Ciclo formativo de Grado Medio"), GDCFGS("DAW");
 
 private String cadenaAMostrar;
 

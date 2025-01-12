@@ -41,9 +41,12 @@ public class CicloFormativo {
         if (!codigoStr.matches("^\\d{4}$")) {
             throw new IllegalArgumentException("El código debe ser un número de 4 dígitos.");
         } else {
+
             this.codigo = codigo;
         }
+
     }
+
 
     public String getFamiliaProfesional() {
         return familiaProfesional;
@@ -52,6 +55,8 @@ public class CicloFormativo {
     public void setFamiliaProfesional(String familiaProfesional) {
         if (familiaProfesional == null) {
             throw new NullPointerException("ERROR: La familia profesional de un ciclo formativo no puede ser nula.");
+        }else if(familiaProfesional.trim().isEmpty()){
+            throw new IllegalArgumentException("ERROR: La familia profesional no puede estar vacía.");
         }
         this.familiaProfesional = familiaProfesional;
     }
@@ -74,6 +79,8 @@ public class CicloFormativo {
     public void setNombre(String nombre) {
         if (nombre == null ) {
             throw new NullPointerException("ERROR: El nombre de un ciclo formativo no puede ser nulo.");
+        }else if(nombre.trim().isEmpty()){
+            throw new IllegalArgumentException("ERROR: El nombre de un ciclo formativo no puede estar vacío.");
         }
         this.nombre = nombre;
     }

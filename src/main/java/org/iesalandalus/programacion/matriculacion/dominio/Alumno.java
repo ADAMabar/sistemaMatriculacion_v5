@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.matriculacion.dominio;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.Objects;
@@ -7,7 +8,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-
 public class Alumno {
     private static String ER_TELEFONO;
     private static String ER_CORREO;
@@ -25,6 +25,7 @@ public class Alumno {
     private String nia;
 
     private static String formateaNombre(String nombre) {
+
         nombre = nombre.trim();
         String [] palabras = nombre.split("\\s+");
         StringBuilder nombreFormateado = new StringBuilder();
@@ -51,9 +52,8 @@ public class Alumno {
         if (matcher.matches()){
         String nuemeroDni=matcher.group(1);
         char letraDni=matcher.group(2).charAt(0);
-        // convierto a entero la cadena grupo 1 que son los numeros del dni
         int numero= Integer.parseInt(nuemeroDni);
-         //cojo el resto
+
             int resto=numero%23;
 
 
@@ -120,14 +120,16 @@ public class Alumno {
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
-        if(nombre==null){
+        if (nombre == null) {
             throw new NullPointerException("ERROR: El nombre de un alumno no puede ser nulo.");
-        }else {
-        this.nombre=formateaNombre(nombre);
-     }
+        } else if (nombre.isEmpty()) {
+            throw new IllegalArgumentException("ERROR: El nombre de un alumno no puede estar vacío.");
+        } else {
+            this.nombre = formateaNombre(nombre);
+        }
     }
+
 
     public String getNia() {
         String parteNombre = nombre.substring(0, 4).toLowerCase();
@@ -145,7 +147,7 @@ public class Alumno {
 
     public void setNia() {
       if(nia==null){
-          throw new NullPointerException("error");
+          throw new NullPointerException("ERROR: El nia no puede ser nulo.");
       }
 
     }
@@ -206,33 +208,32 @@ public class Alumno {
             throw new NullPointerException("ERROR: La fecha de nacimiento de un alumno no puede ser nula.");
         }
 
-        LocalDate hoy = LocalDate.now(); // Fecha actual
+        // Formato esperado
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+        LocalDate hoy = LocalDate.now();
         int edad = hoy.getYear() - fechaNacimiento.getYear();
 
         // Ajustar si aún no ha cumplido años este año
-        if (hoy.getDayOfYear() < fechaNacimiento.getDayOfYear()) {
+        if (hoy.isBefore(fechaNacimiento.plusYears(edad))) {
             edad--;
         }
 
         if (edad < MIN_EDAD_ALUMNADO) {
-            throw new IllegalArgumentException("ERROR: La edad del alumno debe ser mayor o igual a 16 años.");
+            throw new IllegalArgumentException("ERROR: La edad del alumno debe ser mayor o igual a " + MIN_EDAD_ALUMNADO + " años.");
         }
 
+        try {
+            // Validar el formato y convertir a String
+            String fechaNacimientoStr = fechaNacimiento.format(formato);
 
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern(FORMATO_FECHA);
-        fechaNacimiento = LocalDate.parse(fechaNacimiento.toString(), formato);
-
-        if (!fechaNacimiento.equals(formato)){
-            throw new IllegalArgumentException("La fecha no tiene el formato correcto. Debe ser " + FORMATO_FECHA);
-        }else{
-            this.fechaNacimiento=fechaNacimiento;
+            // Analizar nuevamente para verificar el formato
+            this.fechaNacimiento = LocalDate.parse(fechaNacimientoStr, formato);
+        } catch (DateTimeParseException e) {
+            throw new IllegalArgumentException("ERROR: La fecha no tiene el formato correcto. Debe ser 'dd/MM/yyyy'.");
         }
-
-
-
-
     }
+
 
 
     public LocalDate getFechaNacimiento() {
@@ -251,7 +252,10 @@ public class Alumno {
     public Alumno(String nombre, String dni, String correo, String telefono, LocalDate fechaNacimiento ){
         if (nombre == null) {
             throw new NullPointerException("ERROR: El nombre de un alumno no puede ser nulo.");
+        } else if (nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("ERROR: El nombre de un alumno no puede estar vacío.");
         }
+
         setNombre(nombre);
         setDni(dni);
         setCorreo(correo);
@@ -263,12 +267,13 @@ public class Alumno {
         if (alumno == null) {
             throw new NullPointerException("ERROR: No es posible copiar un alumno nulo.");
         }
-        setNombre(alumno.getNombre());
-        setDni(alumno.getDni());
-        setCorreo(alumno.getCorreo());
-        setTelefono(alumno.getTelefono());
-        setFechaNacimiento(alumno.getFechaNacimiento());
 
+        this.nombre=alumno.nombre;
+        this.dni=alumno.dni;
+        this.correo=alumno.correo;
+        this.telefono=alumno.telefono;
+        this.fechaNacimiento=alumno.fechaNacimiento;
+        this.nia=alumno.nia;
     }
 
     @Override
@@ -290,7 +295,9 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Número de Identificación del Alumnado (NIA)=" + getNia()+ " nombre="+ getNombre() + "("+getIniciales(nombre)+")"+", DNI="+getDni()+", correo="+getCorreo()+", teléfono="+getTelefono()+", fecha nacimiento="+getFechaNacimiento();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        return "Número de Identificación del Alumnado (NIA)=" + getNia()+ " nombre="+ getNombre() + " ("+getIniciales(nombre)+")"+", DNI="+getDni()+", correo="+getCorreo()+", teléfono="+getTelefono()+", fecha nacimiento="+fechaNacimiento.format(formato);
     }
 }
 
