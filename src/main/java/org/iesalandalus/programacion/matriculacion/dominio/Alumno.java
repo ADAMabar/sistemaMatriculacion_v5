@@ -21,7 +21,6 @@ public class Alumno {
     private String correo;
     private String dni;
     private LocalDate fechaNacimiento;
-
     private String nia;
 
     private static String formateaNombre(String nombre) {

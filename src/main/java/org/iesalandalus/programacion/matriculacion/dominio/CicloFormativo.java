@@ -113,7 +113,7 @@ public class CicloFormativo {
 
 
     public String imprimir() {
-        return "Código ciclo formativo="+getCodigo()+", nombre ciclo formativo="+grado.toString();
+        return "Código ciclo formativo="+getCodigo()+", nombre ciclo formativo="+getNombre();
     }
 
 

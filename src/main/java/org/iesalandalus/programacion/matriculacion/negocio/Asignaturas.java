@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class Asignaturas {
 
-    private Asignatura[] asignaturas;
+    private Asignatura[] coleccionAsignaturas;
     private int capacidad;
     private int tamano;
 
@@ -18,7 +18,7 @@ public class Asignaturas {
         }
         this.capacidad = capacidad;
         this.tamano = 0;
-        this.asignaturas = new Asignatura[capacidad];
+        this.coleccionAsignaturas = new Asignatura[capacidad];
     }
 
 
@@ -32,7 +32,7 @@ public class Asignaturas {
 
         // Iterar sobre el arreglo original y crear una nueva instancia de Alumno para cada uno
         for (int i = 0; i < tamano; i++) {
-            copia[i] = new Asignatura(asignaturas[i]); // Suponiendo que Alumno tiene un constructor de copia
+            copia[i] = new Asignatura(coleccionAsignaturas[i]); // Suponiendo que Alumno tiene un constructor de copia
         }
 
         return copia;
@@ -61,7 +61,7 @@ public class Asignaturas {
             throw new OperationNotSupportedException("ERROR: No se aceptan más asignaturas.");
         }
 
-        asignaturas[tamano++] = new Asignatura(asignatura);
+        coleccionAsignaturas[tamano++] = new Asignatura(asignatura);
     }
 
 
@@ -71,8 +71,8 @@ public class Asignaturas {
         }
 
         for (int i = 0; i < tamano; i++) {
-            if (asignaturas[i].equals(asignatura)) {
-                return asignaturas[i];
+            if (coleccionAsignaturas[i].equals(asignatura)) {
+                return coleccionAsignaturas[i];
             }
         }
         return null;
@@ -96,7 +96,7 @@ public class Asignaturas {
 
     private int buscarIndice(Asignatura asignatura) {
         for (int i = 0; i < tamano; i++) {
-            if (asignaturas[i].equals(asignatura)) {
+            if (coleccionAsignaturas[i].equals(asignatura)) {
                 return i;
             }
         }
@@ -116,8 +116,8 @@ public class Asignaturas {
 
     private void desplazarUnaPosicionHaciaIzquierda(int indice) {
         for (int i = indice; i < tamano - 1; i++) {
-            asignaturas[i] = asignaturas[i + 1];
+            coleccionAsignaturas[i] = coleccionAsignaturas[i + 1];
         }
-        asignaturas[tamano - 1] = null;
+    coleccionAsignaturas[tamano - 1] = null;
     }
 }

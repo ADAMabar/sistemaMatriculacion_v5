@@ -23,6 +23,26 @@ public class MainApp {
     public static final int CAPACIDAD = 3;
 
     public static void main(String[] args) throws OperationNotSupportedException {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 
                 try {
@@ -80,8 +100,12 @@ public class MainApp {
 
             asignaturas.insertar(asignatura1);
 
+            CiclosFormativos ciclosFormativos =new CiclosFormativos(4);
 
+            ciclosFormativos.insertar(ciclo1);
 
+            System.out.println("Ciiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiic");
+            Consola.mostrarCiclosFormativos(ciclosFormativos);
             // Crear instancias de Matricula
             Matricula matricula1 = new Matricula(1234,"23-24",LocalDate.of(2025,1,10),alumno1,asignaturas.get());
 
@@ -94,7 +118,7 @@ public class MainApp {
             coleccion.insertar(matricula1);
 
 
-
+/*
             // Probar método get (sin parámetros)
             System.out.println("Todas las matrículas:");
             System.out.println(Arrays.toString(coleccion.get()));
@@ -115,13 +139,17 @@ public class MainApp {
             coleccion.borrar(matricula1);
             System.out.println("\nDespués de borrar una matrícula:");
             System.out.println(Arrays.toString(coleccion.get()));
-
+*/
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
 
 
-       Consola.mostrarMenu();
+
+
+
+
+
 
 /*
 

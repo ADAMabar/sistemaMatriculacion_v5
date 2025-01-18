@@ -12,7 +12,7 @@ public enum EspecialidadProfesorado {
 
 
     public String imprimir() {
-        return this.ordinal() + ".-" + this.cadenaAMostrar;
+        return (this.ordinal()+1) + ".-" + this.cadenaAMostrar;
     }
 
     @Override

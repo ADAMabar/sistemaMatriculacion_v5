@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public class Matriculas {
 
-    private Matricula[] matriculas;
+    private Matricula[] coleccionMatriculas;
     private int capacidad;
     private int tamano;
 
@@ -20,7 +20,7 @@ public class Matriculas {
         }
         this.capacidad = capacidad;
         this.tamano = 0;
-        this.matriculas = new Matricula[capacidad];
+        this.coleccionMatriculas = new Matricula[capacidad];
     }
 
 
@@ -29,11 +29,11 @@ public class Matriculas {
     }
 
 
-    private Matricula[] copiaProfundaMatriculas() {
+    private Matricula[] copiaProfundaMatriculas() throws OperationNotSupportedException {
         Matricula[] copia = new Matricula[tamano];
 
         for (int i = 0; i < tamano; i++) {
-            copia[i] = new Matricula(matriculas[i]);
+            copia[i] = new Matricula(coleccionMatriculas[i]);
         }
             return copia;
 
@@ -61,7 +61,7 @@ public class Matriculas {
             throw new OperationNotSupportedException("ERROR: No se aceptan más matrículas.");
         }
 
-        matriculas[tamano++] = new Matricula(matricula);
+        coleccionMatriculas[tamano++] = new Matricula(matricula);
     }
 
 
@@ -72,7 +72,7 @@ public class Matriculas {
 
         int indice = buscarIndice(matricula);
         if (indice != -1) {
-            return matriculas[indice];
+            return coleccionMatriculas[indice];
         }
         return null;
     }
@@ -95,7 +95,7 @@ public class Matriculas {
 
     private int buscarIndice(Matricula matricula) {
         for (int i = 0; i < tamano; i++) {
-            if (matriculas[i].equals(matricula)) {
+            if (coleccionMatriculas[i].equals(matricula)) {
                 return i;
             }
         }
@@ -115,16 +115,16 @@ public class Matriculas {
 
     private void desplazarUnaPosicionHaciaIzquierda(int indice) {
         for (int i = indice; i < tamano - 1; i++) {
-            matriculas[i] = matriculas[i + 1];
+            coleccionMatriculas[i] = coleccionMatriculas[i + 1];
         }
-        matriculas[tamano - 1] = null;
+        coleccionMatriculas[tamano - 1] = null;
     }
 
 
     public Matricula[] get(Alumno alumno) {
         int contador = 0;
         for (int i = 0; i < tamano; i++) {
-            if (matriculas[i].getAlumno().equals(alumno)) {
+            if (coleccionMatriculas[i].getAlumno().equals(alumno)) {
                 contador++;
             }
         }
@@ -135,8 +135,8 @@ public class Matriculas {
 
         // Segunda pasada: llenar el arreglo con las coincidencias
         for (int i = 0; i < tamano; i++) {
-            if (matriculas[i].getAlumno().equals(alumno)) {
-                result[indice++] = matriculas[i];
+            if (coleccionMatriculas[i].getAlumno().equals(alumno)) {
+                result[indice++] = coleccionMatriculas[i];
             }
         }
 
@@ -148,7 +148,7 @@ public class Matriculas {
 
         int contador = 0;
         for (int i = 0; i < tamano; i++) {
-            if (matriculas[i].getCursoAcademico().equals(cursoAcademico)) {
+            if (coleccionMatriculas[i].getCursoAcademico().equals(cursoAcademico)) {
                 contador++;
             }
         }
@@ -156,29 +156,27 @@ public class Matriculas {
         Matricula[] result = new Matricula[contador];
         int indice = 0;
         for (int i = 0; i < tamano; i++) {
-            if (matriculas[i].equals(cursoAcademico)) {
-                result[indice++] = matriculas[i];
+            if (coleccionMatriculas[i].equals(cursoAcademico)) {
+                result[indice++] = coleccionMatriculas[i];
             }
 
         }
         return result;
     }
-    public Matricula[] get(CicloFormativo cicloFormativo) {
+    public Matricula[] get(CicloFormativo cicloFormativo)  {
         int contador = 0;
         for (int i = 0; i < tamano; i++) {
-            if (matriculas[i].equals(cicloFormativo)) {
+            if (coleccionMatriculas[i].equals(cicloFormativo)) {
                 contador++;
             }
         }
 
-        // Crear el arreglo resultante del tamaño exacto
         Matricula[] result = new Matricula[contador];
         int indice = 0;
 
-        // Segunda pasada: llenar el arreglo con las coincidencias
         for (int i = 0; i < tamano; i++) {
-            if (matriculas[i].equals(cicloFormativo)) {
-                result[indice++] = matriculas[i];
+            if (coleccionMatriculas[i].equals(cicloFormativo)) {
+                result[indice++] = coleccionMatriculas[i];
             }
         }
 

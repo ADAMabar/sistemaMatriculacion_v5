@@ -6,7 +6,7 @@ import javax.naming.OperationNotSupportedException;
 import java.util.Arrays;
 
     public class Alumnos {
-        private Alumno[] alumnos;
+        private Alumno[] coleccionAlumnos;
         private int capacidad;
         private int tamano;
 
@@ -17,7 +17,7 @@ import java.util.Arrays;
             }
             this.capacidad = capacidad;
             this.tamano = 0;
-            this.alumnos = new Alumno[capacidad];
+            this.coleccionAlumnos = new Alumno[capacidad];
         }
 
 
@@ -31,7 +31,7 @@ import java.util.Arrays;
 
             // Iterar sobre el arreglo original y crear una nueva instancia de Alumno para cada uno
             for (int i = 0; i < tamano; i++) {
-                copia[i] = new Alumno(alumnos[i]); // Suponiendo que Alumno tiene un constructor de copia
+                copia[i] = new Alumno(coleccionAlumnos[i]); // Suponiendo que Alumno tiene un constructor de copia
             }
 
             return copia;
@@ -57,7 +57,7 @@ import java.util.Arrays;
                 throw new OperationNotSupportedException("ERROR: No se aceptan más alumnos.");
             }
 
-            alumnos[tamano++] =new Alumno(alumno);
+            coleccionAlumnos[tamano++] =new Alumno(alumno);
         }
 
 
@@ -68,7 +68,7 @@ import java.util.Arrays;
 
             int indice = buscarIndice(alumno);
             if (indice != -1) {
-                return alumnos[indice];
+                return coleccionAlumnos[indice];
             }
             return null;
         }
@@ -83,7 +83,7 @@ import java.util.Arrays;
             boolean encontrado = false;
 
             for (int i = 0; i < tamano; i++) {
-                if (alumnos[i].equals(alumno)) {
+                if (coleccionAlumnos[i].equals(alumno)) {
                     // Desplazar todos los elementos a la izquierda
                    desplazarUnaPosicionHaciaIzquierda(i);
                     tamano--;
@@ -101,7 +101,7 @@ import java.util.Arrays;
 
         private int buscarIndice(Alumno alumno) {
             for (int i = 0; i < tamano; i++) {
-                if (alumnos[i].equals(alumno)) {
+                if (coleccionAlumnos[i].equals(alumno)) {
                     return i;
                 }
             }
@@ -121,9 +121,9 @@ import java.util.Arrays;
 
         private void desplazarUnaPosicionHaciaIzquierda(int indice) {
             for (int i = indice; i < tamano - 1; i++) {
-                alumnos[i] = alumnos[i + 1];
+                coleccionAlumnos[i] = coleccionAlumnos[i + 1];
             }
-            alumnos[tamano - 1] = null;
+            coleccionAlumnos[tamano - 1] = null;
         }
 
     }

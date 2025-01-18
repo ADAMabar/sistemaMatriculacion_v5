@@ -8,7 +8,7 @@ import java.util.Arrays;
     public class CiclosFormativos {
 
 
-        private CicloFormativo[] ciclosFormativos;
+        private CicloFormativo[] coleccionCiclosFormativos;
         private int capacidad;
         private int tamano;
 
@@ -19,7 +19,7 @@ import java.util.Arrays;
             }
             this.capacidad = capacidad;
             this.tamano = 0;
-            this.ciclosFormativos = new CicloFormativo[capacidad];
+            this.coleccionCiclosFormativos = new CicloFormativo[capacidad];
         }
 
 
@@ -33,7 +33,7 @@ import java.util.Arrays;
 
 
             for (int i = 0; i < tamano; i++) {
-                copia[i] = new CicloFormativo(ciclosFormativos[i]);
+                copia[i] = new CicloFormativo(coleccionCiclosFormativos[i]);
             }
 
             return copia;
@@ -60,7 +60,7 @@ import java.util.Arrays;
                 throw new OperationNotSupportedException("ERROR: No se aceptan más ciclos formativos.");
             }
 
-            ciclosFormativos[tamano++] = new CicloFormativo(cicloFormativo);
+            coleccionCiclosFormativos[tamano++] = new CicloFormativo(cicloFormativo);
         }
 
 
@@ -71,7 +71,7 @@ import java.util.Arrays;
 
             int indice = buscarIndice(cicloFormativo);
             if (indice != -1) {
-                return ciclosFormativos[indice];
+                return coleccionCiclosFormativos[indice];
             }
             return null;
         }
@@ -102,7 +102,7 @@ import java.util.Arrays;
 
         private int buscarIndice(CicloFormativo cicloFormativo) {
             for (int i = 0; i < tamano; i++) {
-                if (ciclosFormativos[i].equals(cicloFormativo)) {
+                if (coleccionCiclosFormativos[i].equals(cicloFormativo)) {
                     return i;
                 }
             }
@@ -122,9 +122,9 @@ import java.util.Arrays;
 
         private void desplazarUnaPosicionHaciaIzquierda(int indice) {
             for (int i = indice; i < tamano - 1; i++) {
-                ciclosFormativos[i] = ciclosFormativos[i + 1];
+                coleccionCiclosFormativos[i] = coleccionCiclosFormativos[i + 1];
             }
-            ciclosFormativos[tamano - 1] = null;
+            coleccionCiclosFormativos[tamano - 1] = null;
         }
     }
 

@@ -35,7 +35,7 @@ public enum Opcion {
 // ordibak lo que hace es que devolverá el numero y luego la cadeba a mostrar
         @Override
         public String toString() {
-            return ordinal() + " .- " + cadenaAMostrar;
+            return (ordinal()+1) + " .- " + cadenaAMostrar;
         }
     }
 
