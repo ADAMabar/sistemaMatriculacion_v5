@@ -15,6 +15,8 @@ public class Asignatura {
     private int horasAnuales;
     private EspecialidadProfesorado especialidadProfesorado;
     private CicloFormativo cicloFormativo;
+    Asignatura[] coleccionAsignaturas;
+
 
     public Asignatura(String codigo, String nombre, int horasAnuales, Curso curso, int horasDesdoble, EspecialidadProfesorado especialidadProfesorado, CicloFormativo cicloFormativo) {
         if(codigo==null){
@@ -154,7 +156,7 @@ public class Asignatura {
     }
 
     public String imprimir() {
-        return "Código asignatura="+ this.codigo +", "+"nombre asignatura="+this.nombre+", "+ "ciclo formativo=Código ciclo formativo="+cicloFormativo.getCodigo()+ ", "+ "nombre ciclo formativo="+ cicloFormativo.getGrado();
+        return "Código asignatura="+ this.codigo +", "+"nombre asignatura="+this.nombre+", "+ "ciclo formativo=Código ciclo formativo="+cicloFormativo.getCodigo()+ ", "+ "nombre ciclo formativo="+ cicloFormativo.getNombre();
 
 
     }
@@ -163,7 +165,7 @@ public class Asignatura {
     @Override
     public String toString() {
         return "Código=" + codigo + ", nombre=" + nombre +", horas anuales=" + horasAnuales +
-                 ", curso=" + curso  + ", horas desdoble=" + horasDesdoble + ", ciclo formativo=Código ciclo formativo="+cicloFormativo.getCodigo()+", nombre ciclo formativo="+ cicloFormativo.getGrado()+
+                 ", curso=" + curso  + ", horas desdoble=" + horasDesdoble + ", ciclo formativo=Código ciclo formativo="+cicloFormativo.getCodigo()+", nombre ciclo formativo="+ cicloFormativo.getNombre()+
                 ", especialidad profesorado=" + especialidadProfesorado ;
     }
 }
