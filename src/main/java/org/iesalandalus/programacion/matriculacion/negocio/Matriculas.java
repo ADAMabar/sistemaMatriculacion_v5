@@ -1,6 +1,8 @@
 package org.iesalandalus.programacion.matriculacion.negocio;
 
 import java.time.LocalDate;
+
+import org.iesalandalus.programacion.matriculacion.dominio.Asignatura;
 import org.iesalandalus.programacion.matriculacion.dominio.Matricula;
 import org.iesalandalus.programacion.matriculacion.dominio.Alumno;
 import org.iesalandalus.programacion.matriculacion.dominio.CicloFormativo;
@@ -35,7 +37,7 @@ public class Matriculas {
         for (int i = 0; i < tamano; i++) {
             copia[i] = new Matricula(coleccionMatriculas[i]);
         }
-            return copia;
+        return copia;
 
     }
 
@@ -129,14 +131,13 @@ public class Matriculas {
             }
         }
 
-        // Crear el arreglo resultante del tamaño exacto
         Matricula[] result = new Matricula[contador];
         int indice = 0;
 
-        // Segunda pasada: llenar el arreglo con las coincidencias
         for (int i = 0; i < tamano; i++) {
             if (coleccionMatriculas[i].getAlumno().equals(alumno)) {
-                result[indice++] = coleccionMatriculas[i];
+                result[indice] = coleccionMatriculas[i];
+                indice++;
             }
         }
 
@@ -145,8 +146,9 @@ public class Matriculas {
 
 
     public Matricula[] get(String cursoAcademico) throws OperationNotSupportedException {
-
         int contador = 0;
+
+
         for (int i = 0; i < tamano; i++) {
             if (coleccionMatriculas[i].getCursoAcademico().equals(cursoAcademico)) {
                 contador++;
@@ -155,33 +157,46 @@ public class Matriculas {
 
         Matricula[] result = new Matricula[contador];
         int indice = 0;
+
         for (int i = 0; i < tamano; i++) {
-            if (coleccionMatriculas[i].equals(cursoAcademico)) {
+            if (coleccionMatriculas[i].getCursoAcademico().equals(cursoAcademico)) {
                 result[indice++] = coleccionMatriculas[i];
             }
-
         }
+
         return result;
     }
-    public Matricula[] get(CicloFormativo cicloFormativo)  {
+
+    public Matricula[] get(CicloFormativo cicloFormativo) {
         int contador = 0;
+
+
         for (int i = 0; i < tamano; i++) {
-            if (coleccionMatriculas[i].equals(cicloFormativo)) {
-                contador++;
+            Asignatura[] asignaturas = coleccionMatriculas[i].getColeccionAsignaturas();
+            for (Asignatura asignatura : asignaturas) {
+                if (asignatura.getCicloFormativo().equals(cicloFormativo)) {
+                    contador++;
+                    break;
+                }
             }
         }
 
         Matricula[] result = new Matricula[contador];
         int indice = 0;
 
+
         for (int i = 0; i < tamano; i++) {
-            if (coleccionMatriculas[i].equals(cicloFormativo)) {
-                result[indice++] = coleccionMatriculas[i];
+            Asignatura[] asignaturas = coleccionMatriculas[i].getColeccionAsignaturas();
+            for (Asignatura asignatura : asignaturas) {
+                if (asignatura.getCicloFormativo().equals(cicloFormativo)) {
+                    result[indice++] = coleccionMatriculas[i];
+                    break;
+                }
             }
         }
 
         return result;
     }
-}
 
+}
 

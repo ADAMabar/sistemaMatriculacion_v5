@@ -1,9 +1,7 @@
 package org.iesalandalus.programacion.matriculacion.negocio;
-import org.iesalandalus.programacion.matriculacion.dominio.Alumno;
 import org.iesalandalus.programacion.matriculacion.dominio.Asignatura;
 
 import javax.naming.OperationNotSupportedException;
-import java.util.Arrays;
 
 public class Asignaturas {
 
@@ -79,7 +77,7 @@ public class Asignaturas {
     }
 
 
-    public void borrar(Asignatura asignatura) throws OperationNotSupportedException {
+    public Asignatura borrar(Asignatura asignatura) throws OperationNotSupportedException {
         if (asignatura == null) {
             throw new NullPointerException("ERROR: No se puede borrar una asignatura nula.");
         }
@@ -91,6 +89,7 @@ public class Asignaturas {
         } else {
             throw new OperationNotSupportedException("ERROR: No existe ninguna asignatura como la indicada.");
         }
+        return asignatura;
     }
 
 
@@ -118,6 +117,6 @@ public class Asignaturas {
         for (int i = indice; i < tamano - 1; i++) {
             coleccionAsignaturas[i] = coleccionAsignaturas[i + 1];
         }
-    coleccionAsignaturas[tamano - 1] = null;
+        coleccionAsignaturas[tamano - 1] = null;
     }
 }

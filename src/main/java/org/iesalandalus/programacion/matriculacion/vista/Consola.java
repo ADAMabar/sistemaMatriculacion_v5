@@ -49,34 +49,36 @@ public class Consola {
     public static Alumno leerAlumno() {
         String Nombre, dni, correo, telefono;
         LocalDate fechaNacimiento;
-
+        System.out.println("===============================");
         System.out.println("Introduce los datos del alumno");
         System.out.println("==============================");
-        do {
-            System.out.print("Nombre: ");
-            Nombre = Entrada.cadena();
-        }while (Nombre.isBlank());
-        do {
-            System.out.print("DNI: ");
-            dni = Entrada.cadena();
-        }while (dni.isBlank());
-        do {
-            System.out.print("Correo: ");
-            correo = Entrada.cadena();
-        }while (correo.isBlank());
-        do {
-            System.out.print("Telefono: ");
-            telefono = Entrada.cadena();
-        }while (telefono.isBlank());
+
+
+        System.out.print("Nombre: ");
+        Nombre = Entrada.cadena();
+
+
+        System.out.print("DNI: ");
+        dni = Entrada.cadena();
+
+
+        System.out.print("Correo: ");
+        correo = Entrada.cadena();
+
+
+        System.out.print("Telefono: ");
+        telefono = Entrada.cadena();
+
         System.out.println("Fecha de nacimiento: ");
 
-        fechaNacimiento = leerFecha("Introduce una fecha válida en formato yyyy-MM-dd: ");
+        fechaNacimiento = leerFecha("Introduce una fecha válida en formato dd/MM/YYYY : ");
 
         String fechaNacimientoString = fechaNacimiento.toString();
 
 
-        return new Alumno(Nombre, dni, correo, telefono, fechaNacimiento);
 
+
+        return new Alumno(Nombre, dni, correo, telefono, fechaNacimiento);
 
     }
 
@@ -90,7 +92,7 @@ public class Consola {
 
         LocalDate fechaNacimientoFicticia = LocalDate.of(2000, 1, 1);
 
-        return new Alumno("fictico", dni, "ficticio", "sadasd@adada.com", fechaNacimientoFicticia);
+        return new Alumno("fictico", dni, "juan.perez@email.com", "123456789", fechaNacimientoFicticia);
     }
 
     public static LocalDate leerFecha(String mensaje) {
@@ -118,6 +120,7 @@ public class Consola {
     public static Grado leerGrado() {
         int entrada;
         Grado gradoSel = null;
+        System.out.println("===========================");
         System.out.println("Lista de grados disponibles.");
         System.out.println("===========================");
         System.out.println("Seleccione un grado de la lista:");
@@ -142,16 +145,15 @@ public class Consola {
         int codigo, horas;
         Grado grado;
         try {
-
+            System.out.println("========================================");
             System.out.println("Introduzca los datos del ciclo formativo.");
             System.out.println("========================================");
 
             System.out.print("Introduce el codigo: ");
             codigo = Entrada.entero();
-            System.out.println("Introduce la familia profesional del Ciclo formativo (Informatica, Sistemas, Fol ): ");
+            System.out.println("Introduce la familia profesional del Ciclo formativo: ");
             familiaProfesional = Entrada.cadena();
-            System.out.print("Introduce el grado: ");
-            leerGrado();
+
             System.out.print("Introduce el nombre del ciclo formativo: ");
             nombre = Entrada.cadena();
             System.out.print("Introduce horas del ciclo formativo: ");
@@ -159,11 +161,14 @@ public class Consola {
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("ERROR: Debes introducir bien los datos.");
         }
-        grado = leerGrado();
+        System.out.print("Introduce el grado: ");
+        grado=leerGrado();
+
         return new CicloFormativo(codigo, familiaProfesional, grado, nombre, horas);
     }
 
     public static void mostrarCiclosFormativos(CiclosFormativos ciclosFormativos) {
+        System.out.println("======================================");
         System.out.println("Lista de ciclos formativos registrados");
         System.out.println("======================================");
         if (ciclosFormativos == null || ciclosFormativos.get().length == 0) {
@@ -185,8 +190,7 @@ public class Consola {
         int codigo;
         try {
             codigo = Entrada.entero();
-            CicloFormativo cicloFormativo = new CicloFormativo(codigo, "FICTICIO", Grado.GDCFGB, "FICTICO", 12);
-            return cicloFormativo;
+            return new CicloFormativo(codigo, "FICTICIO", Grado.GDCFGB, "FICTICO", 12);
         } catch (NumberFormatException e) {
             throw new NumberFormatException("ERROR: Debes introducir numeros.");
         }
@@ -202,7 +206,7 @@ public class Consola {
         while (true) {
             System.out.print("Introduce el número correspondiente al curso: ");
             try {
-                Numero = Entrada.entero(); 
+                Numero = Entrada.entero();
                 if (Numero == 1) {
                     return Curso.PRIMERO;
                 } else if (Numero == 2) {
@@ -216,15 +220,16 @@ public class Consola {
         }
     }
     public static EspecialidadProfesorado leerEspecialidadProfesorado(){
+        System.out.println("==================================");
         System.out.println("Lista de especialiudad profesorado");
         System.out.println("==================================");
         for (EspecialidadProfesorado profesorado: EspecialidadProfesorado.values()){
-            System.out.println(profesorado);
+            System.out.println(profesorado.imprimir());
         }
 
         int Numero;
         while (true){
-            System.out.println("Introduce el número correspondiente al curso: ");
+            System.out.print("Introduce el número correspondiente al curso: ");
             try {
                 Numero=Entrada.entero();
 
@@ -235,7 +240,7 @@ public class Consola {
                 }else if (Numero==3){
                     return EspecialidadProfesorado.FOL;
                 }else {
-                    System.out.println("Solo puedes introducir 1 para 'Informatica' , 2 para 'Sistemas' o 3 para 'Fol' . Intenta de nuevo.");
+                    System.out.print("Solo puedes introducir 1 para 'Informatica' , 2 para 'Sistemas' o 3 para 'Fol' . Intenta de nuevo.");
                 }
             }catch (NumberFormatException e) {
                 throw new NumberFormatException();
@@ -249,32 +254,31 @@ public class Consola {
         Curso curso;
         EspecialidadProfesorado especialidadProfesorado;
         CicloFormativo ciclo;
-        System.out.print("Introduce Los datos de la asigantuta: ");
+        System.out.println("=====================================");
+        System.out.println("Introduce Los datos de la asigantuta.");
         System.out.println("=====================================");
 
-        do {
-            System.out.print("Introduce codigo del la asigantur: ");
-            codigo=Entrada.cadena();
-        }while (codigo.isBlank());
-        do {
-            System.out.print("Introduce el nombre de la asignatura: ");
-            nombre=Entrada.cadena();
-        }while (nombre.isBlank());
-        try {
 
-            System.out.println("Introduce las horas anuales de la asigantura: ");
-            horasAnuales = Entrada.entero();
-        }catch (IllegalArgumentException e){
-            throw new IllegalArgumentException("ERROR: Introduce bien el numero.");
-        }
-        System.out.println("Introduce el curso.");
+        System.out.print("Introduce codigo del la asigantura (4 digitos): ");
+        codigo=Entrada.cadena();
+
+        System.out.print("Introduce el nombre de la asignatura: ");
+        nombre=Entrada.cadena();
+
+
+
+        System.out.print("Introduce las horas anuales de la asigantura (300 horas maximas): ");
+        horasAnuales = Entrada.entero();
+
+        System.out.println("Ahora introduce el curso al que te quieres matricular.");
 
         curso = leerCurso();
 
+        System.out.println("Horas desdoble.");
 
         while (true) {
             try {
-                System.out.print("Introduce las horas de desdoble de la asignatura: ");
+                System.out.print("Introduce las horas de desdoble de la asignatura (Entre 1 y 3): ");
                 horasDesdoble = Entrada.entero();
                 if (horasDesdoble < 0) {
                     throw new IllegalArgumentException("ERROR: Las horas de desdoble no pueden ser negativas.");
@@ -288,23 +292,23 @@ public class Consola {
 
         especialidadProfesorado = leerEspecialidadProfesorado();
 
-        ciclo=leerCicloformativo();
+        ciclo=getCicloFormativoPorCodigo();
+        ciclo=ciclosFormativos.buscar(ciclo);
 
 
 
         return new Asignatura(codigo,nombre,horasAnuales,curso,horasDesdoble,especialidadProfesorado,ciclo);
     }
     public static Asignatura getAsignaturaPorCodigo(){
-        CicloFormativo cicloFormativo =null;
+        CicloFormativo cicloFormativo =new CicloFormativo(4321,"Informatica",Grado.GDCFGB,"adads",1200);
         String codigo;
         try {
-            do {
-                System.out.println("Introduce el codigo de la asigantura: ");
-                codigo = Entrada.cadena();
-            } while (codigo.isBlank());
+            System.out.println("Introduce el codigo de la asigantura: ");
+            codigo = Entrada.cadena();
         }catch (IllegalArgumentException e){
             throw new IllegalArgumentException("Porfavor introduzca bien el codigo");
         }
+
         return new Asignatura(codigo,"ficticio",111,Curso.PRIMERO,2,EspecialidadProfesorado.INFORMATICA,cicloFormativo);
     }
 
@@ -322,17 +326,19 @@ public class Consola {
         }
 
     }
-    private boolean asignaturaYaMatriculada(Asignaturas[] asignaturasMatricula, Asignatura asignatura){
+    private static boolean asignaturaYaMatriculada(Asignatura[] asignaturasMatriculadas, Asignatura asignatura) {
+        if (asignaturasMatriculadas == null || asignatura == null) {
+            return false;
+        }
 
-        for (Asignaturas asignatura1:asignaturasMatricula) {
+        for (Asignatura asignatura1 : asignaturasMatriculadas) {
             if (asignatura.equals(asignatura1)) {
                 return true;
             }
         }
         return false;
-
-
     }
+
     public static Matricula leerMatricula(Alumnos alumnos, Asignaturas asignaturas)throws OperationNotSupportedException {
         int idMatricula;
         String cursoAdemico;
@@ -340,19 +346,19 @@ public class Consola {
         Alumno alumno;
         int numAsignaturas =0;
         int contador;
-        CiclosFormativos ciclosFormativos =new CiclosFormativos(10);
-        System.out.println("Introduce los datos de la asignatura.");
+
+        System.out.println("Introduce los datos de la matricula.");
         System.out.println("====================================");
 
         try {
             System.out.print("Introduce el ID de la matricula: ");
             idMatricula=Entrada.entero();
         }catch (IllegalArgumentException e){
-           throw new IllegalArgumentException("Has introducido mal el ID, intentelo de nuevo.");
+            throw new IllegalArgumentException("Has introducido mal el ID, intentelo de nuevo.");
         }
 
         do {
-            System.out.print("Introduce el curso academico en este formato 'AA-AA");
+            System.out.print("Introduce el curso academico en este formato 'AA-AA': ");
             cursoAdemico=Entrada.cadena();
         }while (cursoAdemico.isBlank());
 
@@ -361,25 +367,44 @@ public class Consola {
 
         fecha=leerFecha("Intrduce la fecha de matricualción.");
 
-      alumno=leerAlumnoPorDni();
-      Asignatura [] coleccionAsignaturas;
-        System.out.println("introduce el numero de asigaturas en las que te quieres matricular. ");
+        alumno=leerAlumnoPorDni();
+        alumno=alumnos.buscar(alumno);
+
+        Asignatura [] coleccionAsignaturas;
+        System.out.print("introduce el numero de asigaturas en las que te quieres matricular: ");
         contador=Entrada.entero();
         numAsignaturas=contador+numAsignaturas;
 
-      coleccionAsignaturas=new Asignatura[numAsignaturas];
+        coleccionAsignaturas=new Asignatura[numAsignaturas];
+        Asignatura asignatura;
+        for (int i = 0; i < numAsignaturas; i++) {
+            System.out.println("Introduce la asignatura " + (i + 1) + " por favor: ");
 
-      for (int i=0; i<numAsignaturas;i++){
-          System.out.println("Introduce la asigantura "+(i+1)+" porfavor: ");
-          coleccionAsignaturas[i]=leerAsigantura(ciclosFormativos);
 
-      }
+            asignatura= getAsignaturaPorCodigo();
 
-        return new Matricula(idMatricula,cursoAdemico,fecha,alumno,coleccionAsignaturas);
+            asignatura = asignaturas.buscar(asignatura);
+
+
+            if (!asignaturaYaMatriculada(coleccionAsignaturas, asignatura)) {
+
+                coleccionAsignaturas[i] = asignatura;
+                System.out.println("Asignatura insertada.");
+            }else {
+                System.out.println("Esta asignatura no se insertó, ya está matriculada.");
+            }
+
+        }
+
+
+        return new Matricula(idMatricula, cursoAdemico, fecha, alumno, coleccionAsignaturas);
+
     }
 
 
-    public static Matricula getMatriculaPorIdentificador() throws OperationNotSupportedException{
+
+
+    public static Matricula getMatriculaPorIdentificador() throws OperationNotSupportedException {
         int id;
         LocalDate fechaFicticia;
 
@@ -388,18 +413,12 @@ public class Consola {
         try {
             id=Entrada.entero();
         } catch (IllegalArgumentException e){
-         throw new IllegalArgumentException("ERROR: porfavor vuele a introducir bien el id numerico ");
+            throw new IllegalArgumentException("ERROR: porfavor vuele a introducir bien el id numerico ");
         }
         Asignatura[] asignaturas = asignaturas1.get();
         fechaFicticia= LocalDate.of(2000,1,1);
-        Alumno alumno=new Alumno("fictico","12345678Z", "ficticio", "sadasd@adada.com",  fechaFicticia);
-        return new Matricula(id,"fictcio",LocalDate.of(2000,1,1),alumno,asignaturas);
+        Alumno alumno=new Alumno("fictico","12345678Z", "ficticio@GMAIL.COM", "123456789",  fechaFicticia);
+        return new Matricula(id,"24-25",LocalDate.now(),alumno,asignaturas);
 
     }
 }
-
-
-
-
-
-

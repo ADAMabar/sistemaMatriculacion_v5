@@ -20,7 +20,7 @@ public class Matricula {
     private Alumno alumno;
     private Asignatura[] coleccionAsignaturas;
 
-     private  int idMatricula;
+    private  int idMatricula;
     private  String cursoAcademico;
     private LocalDate fechaMatriculacion;
     private LocalDate fechaAnulacion;
@@ -43,6 +43,9 @@ public class Matricula {
         }
         this.idMatricula = matricula.idMatricula;
         this.cursoAcademico = matricula.cursoAcademico;
+        if (matricula.fechaAnulacion!=null){
+            this.fechaAnulacion=matricula.fechaAnulacion;
+        }
         this.fechaMatriculacion = matricula.fechaMatriculacion;
         this.alumno = matricula.alumno;
         this.coleccionAsignaturas = matricula.coleccionAsignaturas;

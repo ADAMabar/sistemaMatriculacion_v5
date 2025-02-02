@@ -23,6 +23,7 @@ public class Alumno {
     private LocalDate fechaNacimiento;
     private String nia;
 
+
     private static String formateaNombre(String nombre) {
 
         nombre = nombre.trim();
@@ -30,8 +31,8 @@ public class Alumno {
         StringBuilder nombreFormateado = new StringBuilder();
 
         for (String palabra: palabras ){
-          String palabraFormateada = palabra.substring(0,1).toUpperCase()+palabra.substring(1).toLowerCase();
-          nombreFormateado.append(palabraFormateada).append(" ");
+            String palabraFormateada = palabra.substring(0,1).toUpperCase()+palabra.substring(1).toLowerCase();
+            nombreFormateado.append(palabraFormateada).append(" ");
 
         }
         // Con el ".toString() retorna el strimgBuilder a una cadena normal
@@ -40,18 +41,18 @@ public class Alumno {
 
     private boolean comprobarLetraDni(String dni) {
 
-       String formatoDni="^([0-9]{8})([A-Z])";
-       if(!dni.matches(formatoDni)){
-           throw new IllegalArgumentException("ERROR: El dni del alumno no tiene un formato válido.");
-       }
+        String formatoDni="^([0-9]{8})([A-Z])";
+        if(!dni.matches(formatoDni)){
+            throw new IllegalArgumentException("ERROR: El dni del alumno no tiene un formato válido.");
+        }
         Pattern pattern=Pattern.compile(formatoDni);
         Matcher matcher=pattern.matcher(dni);
 
 
         if (matcher.matches()){
-        String nuemeroDni=matcher.group(1);
-        char letraDni=matcher.group(2).charAt(0);
-        int numero= Integer.parseInt(nuemeroDni);
+            String nuemeroDni=matcher.group(1);
+            char letraDni=matcher.group(2).charAt(0);
+            int numero= Integer.parseInt(nuemeroDni);
 
             int resto=numero%23;
 
@@ -59,51 +60,51 @@ public class Alumno {
             char letraValida;
             switch (resto) {
                 case 0:letraValida = 'T';
-                break;
+                    break;
                 case 1:letraValida = 'R';
-                break;
+                    break;
                 case 2:letraValida = 'W';
-                break;
+                    break;
                 case 3:letraValida = 'A';
-                break;
+                    break;
                 case 4:letraValida = 'G';
-                break;
+                    break;
                 case 5:letraValida = 'M';
-                break;
+                    break;
                 case 6:letraValida = 'Y';
-                break;
+                    break;
                 case 7:letraValida= 'F';
-                break;
+                    break;
                 case 8:letraValida= 'P';
-                break;
+                    break;
                 case 9:letraValida= 'D';
-                break;
+                    break;
                 case 10:letraValida='X';
-                break;
+                    break;
                 case 11:letraValida= 'B';
-                break;
+                    break;
                 case 12:letraValida = 'N';
-                break;
+                    break;
                 case 13:letraValida= 'J';
-                break;
+                    break;
                 case 14:letraValida= 'Z';
-                break;
+                    break;
                 case 15:letraValida = 'S';
-                break;
+                    break;
                 case 16:letraValida = 'Q';
-                break;
+                    break;
                 case 17:letraValida = 'V';
-                break;
+                    break;
                 case 18:letraValida = 'H';
-                break;
+                    break;
                 case 19:letraValida = 'L';
-                break;
+                    break;
                 case 20:letraValida = 'C';
-                break;
+                    break;
                 case 21:letraValida= 'K';
-                break;
+                    break;
                 case 22:letraValida = 'E';
-                break;
+                    break;
                 default:
                     return false;
             }
@@ -112,7 +113,7 @@ public class Alumno {
             return letraDni == letraValida ;
         }
 
-      return false;
+        return false;
 
     }
 
@@ -145,9 +146,9 @@ public class Alumno {
     }
 
     public void setNia() {
-      if(nia==null){
-          throw new NullPointerException("ERROR: El nia no puede ser nulo.");
-      }
+        if(nia==null){
+            throw new NullPointerException("ERROR: El nia no puede ser nulo.");
+        }
 
     }
 
@@ -156,9 +157,9 @@ public class Alumno {
     }
 
     private void setDni(String dni) {
-       if (dni==null){
-           throw new NullPointerException("ERROR: El dni de un alumno no puede ser nulo.");
-       }
+        if (dni==null){
+            throw new NullPointerException("ERROR: El dni de un alumno no puede ser nulo.");
+        }
 
         if (!comprobarLetraDni(dni)) {
             throw new IllegalArgumentException("ERROR: La letra del dni del alumno no es correcta.");
@@ -176,12 +177,12 @@ public class Alumno {
             throw new NullPointerException("ERROR: El teléfono de un alumno no puede ser nulo.");
         }
         String formatoTelefono= "\\d{9}";
-       if (!telefono.matches(formatoTelefono)){
-           throw new IllegalArgumentException("ERROR: El teléfono del alumno no tiene un formato válido.");
+        if (!telefono.matches(formatoTelefono)){
+            throw new IllegalArgumentException("ERROR: El teléfono del alumno no tiene un formato válido.");
 
-       }else{
-           this.telefono=telefono;
-       }
+        }else{
+            this.telefono=telefono;
+        }
     }
 
     public String getCorreo() {
@@ -240,7 +241,7 @@ public class Alumno {
     }
     private String getIniciales(String nombre){
         String [] palabras= nombre.split("\\s+");
-            StringBuilder iniciales=new StringBuilder();
+        StringBuilder iniciales=new StringBuilder();
 
         for (String palabra:palabras){
             String inicial= palabra.substring(0,1);
@@ -287,6 +288,7 @@ public class Alumno {
     public int hashCode() {
         return Objects.hashCode(dni);
     }
+
     public String imprimir(){
         return String.format("Nombre: %s\nDNI: %s\nCorreo: %s\nTeléfono: %s\nFecha de nacimiento: %s",
                 nombre, dni, correo, telefono, fechaNacimiento.format(DateTimeFormatter.ofPattern(FORMATO_FECHA)));
@@ -299,6 +301,3 @@ public class Alumno {
         return "Número de Identificación del Alumnado (NIA)=" + getNia()+ " nombre="+ getNombre() + " ("+getIniciales(nombre)+")"+", DNI="+getDni()+", correo="+getCorreo()+", teléfono="+getTelefono()+", fecha nacimiento="+fechaNacimiento.format(formato);
     }
 }
-
- 
-
