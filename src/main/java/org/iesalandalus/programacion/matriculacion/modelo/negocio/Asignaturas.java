@@ -1,5 +1,5 @@
-package org.iesalandalus.programacion.matriculacion.negocio;
-import org.iesalandalus.programacion.matriculacion.dominio.Asignatura;
+package org.iesalandalus.programacion.matriculacion.modelo.negocio;
+import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
 
 import javax.naming.OperationNotSupportedException;
 

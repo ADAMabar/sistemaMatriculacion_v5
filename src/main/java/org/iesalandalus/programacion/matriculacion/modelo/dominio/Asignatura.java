@@ -1,8 +1,4 @@
-package org.iesalandalus.programacion.matriculacion.dominio;
-
-import org.iesalandalus.programacion.matriculacion.negocio.Asignaturas;
-
-import javax.naming.OperationNotSupportedException;
+package org.iesalandalus.programacion.matriculacion.modelo.dominio;
 
 public class Asignatura {
     public static final int MAX_NUM_HORAS_ANUALES = 300;

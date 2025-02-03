@@ -1,20 +1,20 @@
 package org.iesalandalus.programacion.matriculacion;
-import org.iesalandalus.programacion.matriculacion.dominio.Matricula;
-import org.iesalandalus.programacion.matriculacion.dominio.*;
-import org.iesalandalus.programacion.matriculacion.dominio.CicloFormativo;
-import org.iesalandalus.programacion.matriculacion.dominio.Asignatura;
-import org.iesalandalus.programacion.matriculacion.negocio.*;
-import org.iesalandalus.programacion.matriculacion.negocio.Asignaturas;
-import org.iesalandalus.programacion.matriculacion.negocio.CiclosFormativos;
-import org.iesalandalus.programacion.matriculacion.negocio.Matriculas;
+import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
+import org.iesalandalus.programacion.matriculacion.modelo.dominio.Matricula;
+import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
+import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
+import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.Alumnos;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.*;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.Asignaturas;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.CiclosFormativos;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.Matriculas;
 import org.iesalandalus.programacion.utilidades.Entrada;
 import org.iesalandalus.programacion.matriculacion.vista.*;
 
 
 import javax.naming.OperationNotSupportedException;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Scanner;
 
 
 public class MainApp {
