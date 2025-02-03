@@ -88,6 +88,15 @@ public class Modelo {
     public Matricula[] getMatriculas() throws OperationNotSupportedException {
         return matriculas.get();
     }
+    public Matricula[] getMatriculas(Alumno alumno) throws OperationNotSupportedException {
+        return matriculas.get();
+    }
+    public Matricula[] getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
+        return matriculas.get();
+    }
+    public Matricula[] getMatriculas(String cursoAcademico) throws OperationNotSupportedException {
+        return matriculas.get();
+    }
 
 
 }
