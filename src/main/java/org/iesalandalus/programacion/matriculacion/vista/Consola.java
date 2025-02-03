@@ -166,23 +166,21 @@ public class Consola {
         return new CicloFormativo(codigo, familiaProfesional, grado, nombre, horas);
     }
 
-    public static void mostrarCiclosFormativos(CiclosFormativos ciclosFormativos) {
+    public static void mostrarCiclosFormativos(CicloFormativo[] ciclosFormativos) {
         System.out.println("======================================");
         System.out.println("Lista de ciclos formativos registrados");
         System.out.println("======================================");
-        if (ciclosFormativos == null || ciclosFormativos.get().length == 0) {
+
+        if (ciclosFormativos == null || ciclosFormativos.length == 0) {
             System.out.println("No hay ciclos formativos registrados en este momento.");
             return;
         }
 
-        System.out.println("Lista de ciclos formativos registrados:");
-        System.out.println("========================================");
-
-        for (CicloFormativo ciclo : ciclosFormativos.get()) {
+        for (CicloFormativo ciclo : ciclosFormativos) {
             System.out.println(ciclo);
         }
-
     }
+
 
     public static CicloFormativo getCicloFormativoPorCodigo() {
         System.out.println("Introduce codigo del ciclo formatico: ");
@@ -311,20 +309,24 @@ public class Consola {
         return new Asignatura(codigo,"ficticio",111,Curso.PRIMERO,2,EspecialidadProfesorado.INFORMATICA,cicloFormativo);
     }
 
-    private static void mostrarAsignaturas(Asignaturas asignaturas){
-        System.out.println("Lista de Asiganturas");
+    private static void mostrarAsignaturas(Asignatura[] asignaturas) {
+        System.out.println("Lista de Asignaturas");
         System.out.println("====================");
-        if(asignaturas==null||asignaturas.get().length==0){
-            System.out.println("No hay asiganturas registradas en este momento.");
+
+        if (asignaturas == null || asignaturas.length == 0) {
+            System.out.println("No hay asignaturas registradas en este momento.");
             return;
         }
-        System.out.println("Lista de asiganturas.");
-        System.out.println("====================");
-        for (Asignatura asignatura: asignaturas.get()){
+
+        for (Asignatura asignatura : asignaturas) {
             System.out.println(asignatura);
         }
-
     }
+
+    public Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturas ){
+        return asignaturas;
+    }
+
     private static boolean asignaturaYaMatriculada(Asignatura[] asignaturasMatriculadas, Asignatura asignatura) {
         if (asignaturasMatriculadas == null || asignatura == null) {
             return false;
@@ -338,7 +340,7 @@ public class Consola {
         return false;
     }
 
-    public static Matricula leerMatricula(Alumnos alumnos, Asignaturas asignaturas)throws OperationNotSupportedException {
+    public static Matricula leerMatricula(Alumnos alumnos, Asignatura[] asignaturas)throws OperationNotSupportedException {
         int idMatricula;
         String cursoAdemico;
         LocalDate fecha;
@@ -381,8 +383,6 @@ public class Consola {
 
 
             asignatura= getAsignaturaPorCodigo();
-
-            asignatura = asignaturas.buscar(asignatura);
 
 
             if (!asignaturaYaMatriculada(coleccionAsignaturas, asignatura)) {
