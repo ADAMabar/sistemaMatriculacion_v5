@@ -9,7 +9,7 @@ private Grado(String cadenaAMostrar){
     this.cadenaAMostrar=cadenaAMostrar;
 }
     public String imprimir() {
-        return (this.ordinal()+1) + ".-" + this.cadenaAMostrar;
+        return this.ordinal() + ".-" + this.cadenaAMostrar;
     }
 
     @Override

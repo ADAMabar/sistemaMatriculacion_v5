@@ -25,7 +25,7 @@ public class Controlador {
         vista.setControlador(this);
     }
 
-    public void comenzar(){
+    public void comenzar() throws OperationNotSupportedException{
         modelo.comenzar();
         vista.comenzar();
     }
@@ -56,7 +56,7 @@ public class Controlador {
         return asignatura;
     }
 
-    public void borrar(Asignatura asignatura) throws OperationNotSupportedException {
+    public void borrar(Asignatura asignatura) throws OperationNotSupportedException, NullPointerException {
         modelo.borrar(asignatura);
     }
 
@@ -69,7 +69,7 @@ public class Controlador {
         modelo.insertar(cicloFormativo);
     }
 
-    public CicloFormativo buscar(CicloFormativo ciclo) {
+    public CicloFormativo buscar(CicloFormativo ciclo) throws NullPointerException {
         modelo.buscar(ciclo);
         return ciclo;
     }

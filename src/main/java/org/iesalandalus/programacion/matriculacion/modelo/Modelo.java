@@ -28,19 +28,22 @@ public class Modelo {
         System.out.println("Modelo terminado.");
     }
 
-    public void insertar(Alumno alumno) throws OperationNotSupportedException {
+    public void insertar(Alumno alumno) throws OperationNotSupportedException,IllegalArgumentException,NullPointerException {
         alumnos.insertar(alumno);
     }
     public Alumno buscar(Alumno alumno){
         return alumnos.buscar(alumno);
     }
-    public void borrar(Alumno alumno) throws OperationNotSupportedException{
+    public void borrar(Alumno alumno) throws OperationNotSupportedException,IllegalArgumentException,NullPointerException {
         alumnos.borrar(alumno);
     }
+
     public Alumno[] getAlumnos(){
         return alumnos.get();
     }
-    public void insertar(Asignatura asignatura) throws OperationNotSupportedException {
+
+    
+    public void insertar(Asignatura asignatura) throws OperationNotSupportedException,IllegalArgumentException,NullPointerException  {
         asignaturas.insertar(asignatura);
     }
 
@@ -48,7 +51,7 @@ public class Modelo {
         return asignaturas.buscar(asignatura);
     }
 
-    public void borrar(Asignatura asignatura) throws OperationNotSupportedException {
+    public void borrar(Asignatura asignatura) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         asignaturas.borrar(asignatura);
     }
 
@@ -56,15 +59,15 @@ public class Modelo {
         return asignaturas.get();
     }
 
-    public void insertar(CicloFormativo ciclo) throws OperationNotSupportedException {
+    public void insertar(CicloFormativo ciclo) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         ciclosFormativos.insertar(ciclo);
     }
 
-    public CicloFormativo buscar(CicloFormativo ciclo) {
+    public CicloFormativo buscar(CicloFormativo ciclo) throws NullPointerException{
         return ciclosFormativos.buscar(ciclo);
     }
 
-    public void borrar(CicloFormativo ciclo) throws OperationNotSupportedException {
+    public void borrar(CicloFormativo ciclo) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         ciclosFormativos.borrar(ciclo);
     }
 
@@ -73,7 +76,7 @@ public class Modelo {
     }
 
 
-    public void insertar(Matricula matricula) throws OperationNotSupportedException {
+    public void insertar(Matricula matricula) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         matriculas.insertar(matricula);
     }
 
@@ -81,20 +84,20 @@ public class Modelo {
         return matriculas.buscar(matricula);
     }
 
-    public void borrar(Matricula matricula) throws OperationNotSupportedException {
+    public void borrar(Matricula matricula) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         matriculas.borrar(matricula);
     }
 
-    public Matricula[] getMatriculas() throws OperationNotSupportedException {
+    public Matricula[] getMatriculas() throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         return matriculas.get();
     }
-    public Matricula[] getMatriculas(Alumno alumno) throws OperationNotSupportedException {
+    public Matricula[] getMatriculas(Alumno alumno) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
         return matriculas.get();
     }
-    public Matricula[] getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
+    public Matricula[] getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
         return matriculas.get();
     }
-    public Matricula[] getMatriculas(String cursoAcademico) throws OperationNotSupportedException {
+    public Matricula[] getMatriculas(String cursoAcademico) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
         return matriculas.get();
     }
 

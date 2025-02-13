@@ -82,7 +82,6 @@ public class Consola {
     }
 
     public static Alumno leerAlumnoPorDni() {
-
         String dni;
 
         System.out.print("Introduce el DNI del alumno (8 dígitos seguidos de una letra): ");
@@ -183,7 +182,7 @@ public class Consola {
 
 
     public static CicloFormativo getCicloFormativoPorCodigo() {
-        System.out.println("Introduce codigo del ciclo formatico: ");
+        System.out.println("Introduce codigo del ciclo formativo: ");
         int codigo;
         try {
             codigo = Entrada.entero();
@@ -245,12 +244,11 @@ public class Consola {
         }
 
     }
-    public static Asignatura leerAsigantura (CiclosFormativos ciclosFormativos){
+    public static Asignatura leerAsigantura (CicloFormativo cicloFormativo){
         String codigo,nombre;
         int horasAnuales,horasDesdoble;
         Curso curso;
         EspecialidadProfesorado especialidadProfesorado;
-        CicloFormativo ciclo;
         System.out.println("=====================================");
         System.out.println("Introduce Los datos de la asigantuta.");
         System.out.println("=====================================");
@@ -289,12 +287,7 @@ public class Consola {
 
         especialidadProfesorado = leerEspecialidadProfesorado();
 
-        ciclo=getCicloFormativoPorCodigo();
-        ciclo=ciclosFormativos.buscar(ciclo);
-
-
-
-        return new Asignatura(codigo,nombre,horasAnuales,curso,horasDesdoble,especialidadProfesorado,ciclo);
+        return new Asignatura(codigo,nombre,horasAnuales,curso,horasDesdoble,especialidadProfesorado,cicloFormativo);
     }
     public static Asignatura getAsignaturaPorCodigo(){
         CicloFormativo cicloFormativo =new CicloFormativo(4321,"Informatica",Grado.GDCFGB,"adads",1200);
@@ -327,7 +320,7 @@ public class Consola {
         return asignaturas;
     }
 
-    private static boolean asignaturaYaMatriculada(Asignatura[] asignaturasMatriculadas, Asignatura asignatura) {
+    static boolean asignaturaYaMatriculada(Asignatura[] asignaturasMatriculadas, Asignatura asignatura) {
         if (asignaturasMatriculadas == null || asignatura == null) {
             return false;
         }
@@ -340,13 +333,11 @@ public class Consola {
         return false;
     }
 
-    public static Matricula leerMatricula(Alumnos alumnos, Asignatura[] asignaturas)throws OperationNotSupportedException {
+    public static Matricula leerMatricula(Alumno alumno, Asignatura[] asignaturas)throws OperationNotSupportedException {
         int idMatricula;
         String cursoAdemico;
         LocalDate fecha;
-        Alumno alumno;
-        int numAsignaturas =0;
-        int contador;
+
 
         System.out.println("Introduce los datos de la matricula.");
         System.out.println("====================================");
@@ -368,35 +359,8 @@ public class Consola {
 
         fecha=leerFecha("Intrduce la fecha de matricualción.");
 
-        alumno=leerAlumnoPorDni();
-        alumno=alumnos.buscar(alumno);
 
-        Asignatura [] coleccionAsignaturas;
-        System.out.print("introduce el numero de asigaturas en las que te quieres matricular: ");
-        contador=Entrada.entero();
-        numAsignaturas=contador+numAsignaturas;
-
-        coleccionAsignaturas=new Asignatura[numAsignaturas];
-        Asignatura asignatura;
-        for (int i = 0; i < numAsignaturas; i++) {
-            System.out.println("Introduce la asignatura " + (i + 1) + " por favor: ");
-
-
-            asignatura= getAsignaturaPorCodigo();
-
-
-            if (!asignaturaYaMatriculada(coleccionAsignaturas, asignatura)) {
-
-                coleccionAsignaturas[i] = asignatura;
-                System.out.println("Asignatura insertada.");
-            }else {
-                System.out.println("Esta asignatura no se insertó, ya está matriculada.");
-            }
-
-        }
-
-
-        return new Matricula(idMatricula, cursoAdemico, fecha, alumno, coleccionAsignaturas);
+        return new Matricula(idMatricula, cursoAdemico, fecha, alumno, asignaturas);
 
     }
 

@@ -38,6 +38,7 @@ public class Matricula {
             throw new NullPointerException("ERROR: No es posible copiar una matrícula nula.");
 
         }
+
         this.idMatricula = matricula.idMatricula;
         this.cursoAcademico = matricula.cursoAcademico;
         if (matricula.fechaAnulacion!=null){

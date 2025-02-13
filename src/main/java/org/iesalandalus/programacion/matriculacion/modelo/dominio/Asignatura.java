@@ -44,6 +44,7 @@ public class Asignatura {
         this.horasAnuales=asignatura.horasAnuales;
         this.especialidadProfesorado=asignatura.especialidadProfesorado;
         this.cicloFormativo=asignatura.cicloFormativo;
+        this.coleccionAsignaturas= asignatura.coleccionAsignaturas;
     }
 
     public CicloFormativo getCicloFormativo() {

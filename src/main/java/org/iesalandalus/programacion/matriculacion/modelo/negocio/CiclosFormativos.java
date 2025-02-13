@@ -66,12 +66,13 @@ public class CiclosFormativos {
         if (cicloFormativo == null) {
             throw new NullPointerException("El ciclo formativo no puede ser nulo.");
         }
+          int indice = buscarIndice(cicloFormativo);
+          if (indice != -1) {
+              return new CicloFormativo(coleccionCiclosFormativos[indice]);
 
-        int indice = buscarIndice(cicloFormativo);
-        if (indice != -1) {
-            return coleccionCiclosFormativos[indice];
-        }
-        return null;
+          }
+          return null;
+
     }
 
 

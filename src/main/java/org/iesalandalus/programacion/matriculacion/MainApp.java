@@ -1,4 +1,6 @@
 package org.iesalandalus.programacion.matriculacion;
+import org.iesalandalus.programacion.matriculacion.controlador.Controlador;
+import org.iesalandalus.programacion.matriculacion.modelo.Modelo;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Matricula;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
@@ -20,6 +22,7 @@ import java.time.LocalDate;
 public class MainApp {
 
     public static final int CAPACIDAD = 3;
+    /*
     private Alumnos alumnos;
     private CiclosFormativos ciclosFormativos;
     private Asignaturas asignaturas;
@@ -434,19 +437,17 @@ public class MainApp {
 
 
 
-
+*/
 
     public static void main(String[] args) throws OperationNotSupportedException {
+        System.out.println("Iniciando la apliación...");
 
-        MainApp app = new MainApp();
+        Modelo modelo = new Modelo();
+        Vista vista= new Vista();
+        Controlador controlador = new Controlador(modelo,vista);
+        controlador.comenzar();
 
-        Opcion opcion;
-        do {
-
-            opcion = Consola.elegirOpcion();
-            app.ejecutarOpcion(opcion);
-        } while (opcion != Opcion.SALIR);
-        System.out.println("Hasta luego!!!!");
+        System.out.println("Aplicación cerrada.");
     }
 
 }
