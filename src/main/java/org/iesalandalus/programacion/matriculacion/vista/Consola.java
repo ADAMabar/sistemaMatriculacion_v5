@@ -315,10 +315,93 @@ public class Consola {
             System.out.println(asignatura);
         }
     }
+/*
+    public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturas ){
+     mostrarAsignaturas(asignaturas);
+        int contador;
+        int numAsignaturas = 0;
+        System.out.print("introduce el numero de asigaturas en las que te quieres matricular: ");
+        contador = Entrada.entero();
+        numAsignaturas = contador + numAsignaturas;
 
-    public Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturas ){
-        return asignaturas;
+        Asignatura asignatura;
+        for (int i = 0; i < numAsignaturas; i++) {
+            System.out.println("Introduce la asignatura " + (i + 1) + " por favor: ");
+
+
+            asignatura = Consola.getAsignaturaPorCodigo();
+
+            if (!Consola.asignaturaYaMatriculada(asignaturas, asignatura)) {
+
+                asignaturas[i] = asignatura;
+                System.out.println("Asignatura insertada.");
+            } else {
+                System.out.println("Esta asignatura no se insertó, ya está matriculada.");
+            }
+        }
+    return asignaturas;
     }
+public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturas) {
+    mostrarAsignaturas(asignaturas);
+
+    System.out.print("Introduce el número de asignaturas en las que te quieres matricular: ");
+    int numAsignaturas = Entrada.entero();
+
+    // Creamos un nuevo array para almacenar las asignaturas matriculadas
+    Asignatura[] asignaturasMatriculadas = new Asignatura[asignaturas.length + numAsignaturas];
+
+    int contador = 0;
+    for (int i = 0; i < numAsignaturas; i++) {
+        System.out.println("Introduce la asignatura " + (i + 1) + " por favor: ");
+        Asignatura asignatura = Consola.getAsignaturaPorCodigo();
+
+        if (!Consola.asignaturaYaMatriculada(asignaturas, asignatura)) {
+            asignaturasMatriculadas[contador] = asignatura;
+            contador++;
+            System.out.println("Asignatura insertada.");
+        } else {
+            System.out.println("Esta asignatura no se insertó, ya está matriculada.");
+        }
+    }
+
+    // Copiar las asignaturas originales al nuevo array
+    for (int i = 0; i < asignaturas.length; i++) {
+        asignaturasMatriculadas[contador] = asignaturas[i];
+        contador++;
+    }
+
+    return asignaturasMatriculadas;
+}*/
+public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturas) {
+    mostrarAsignaturas(asignaturas);
+
+    System.out.print("Introduce el número de asignaturas en las que te quieres matricular: ");
+    int numAsignaturas = Entrada.entero();
+
+    int contador = 0;
+    for (int i = 0; i < numAsignaturas; i++) {
+        System.out.println("Introduce la asignatura " + (i + 1) + " por favor: ");
+        Asignatura asignatura = Consola.getAsignaturaPorCodigo();
+
+        // Verificamos si la asignatura no está ya matriculada
+        if (!Consola.asignaturaYaMatriculada(asignaturas, asignatura)) {
+            // Evitar desbordar el array
+            if (contador < asignaturas.length) {
+                asignaturas[contador] = asignatura;
+                contador++;
+                System.out.println("Asignatura insertada.");
+            } else {
+                System.out.println("No hay espacio suficiente en el array.");
+                break;
+            }
+        } else{
+            System.out.println("Esta asignatura no se insertó, ya está matriculada.");
+        }
+    }
+
+    return asignaturas;
+}
+
 
     static boolean asignaturaYaMatriculada(Asignatura[] asignaturasMatriculadas, Asignatura asignatura) {
         if (asignaturasMatriculadas == null || asignatura == null) {
