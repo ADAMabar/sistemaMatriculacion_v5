@@ -256,7 +256,7 @@ public class Vista {
         }
 
     }
-    private void insertarMatricula()   {
+    private void insertarMatricula() {
         System.out.println("ALUMNOS");
         mostrarAlumnos();
         System.out.println("ASIGNATURAS");
@@ -269,47 +269,23 @@ public class Vista {
         try {
 
 
-            int contador;
-            int numAsignaturas = 0;
-
             Alumno alumno;
             alumno = Consola.leerAlumnoPorDni();
             Alumno[] coleccionAlumo = controlador.getAlumnos();
 
+           Asignatura [] asignaturas=controlador.getAsignaturas();
 
-            System.out.print("introduce el numero de asigaturas en las que te quieres matricular: ");
-            contador = Entrada.entero();
-            numAsignaturas = contador + numAsignaturas;
-
-           Asignatura[] asignaturas;
-           asignaturas=controlador.getAsignaturas();
-            Asignatura asignatura;
+            Consola.elegirAsignaturasMatricula(asignaturas);
 
 
             for (Alumno real : coleccionAlumo) {
                 controlador.buscar(alumno);
-
-                for (int i = 0; i < numAsignaturas; i++) {
-                    System.out.println("Introduce la asignatura " + (i + 1) + " por favor: ");
-
-
-                    asignatura = Consola.getAsignaturaPorCodigo();
-                    asignatura = controlador.buscar(asignatura);
-
-                    if (!Consola.asignaturaYaMatriculada(asignaturas, asignatura)) {
-
-                        asignaturas[i] = asignatura;
-                        System.out.println("Asignatura insertada.");
-                    } else {
-                        System.out.println("Esta asignatura no se insertó, ya está matriculada.");
-                    }
-
-                }
                 Matricula matricula = Consola.leerMatricula(real, asignaturas);
                 controlador.insertar(matricula);
                 System.out.println(matricula);
-
             }
+
+
 
 
             System.out.println("Matrícula insertada correctamente.");
