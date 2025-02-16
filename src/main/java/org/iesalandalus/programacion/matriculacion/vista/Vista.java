@@ -428,6 +428,7 @@ public class Vista {
 
 
     }*/
+
     private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
         mostrarMatriculas();
         System.out.println("Elige la matrícula que quieres anular:");
