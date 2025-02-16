@@ -269,26 +269,38 @@ public class Vista {
         try {
 
 
-            Alumno alumno;
-            alumno = Consola.leerAlumnoPorDni();
-            Alumno[] coleccionAlumo = controlador.getAlumnos();
+
+            Alumno[] coleccionAlumno = controlador.getAlumnos();
 
            Asignatura [] asignaturas=controlador.getAsignaturas();
+            Alumno alumno = null;
 
-            Consola.elegirAsignaturasMatricula(asignaturas);
+                System.out.print("Introduce el DNI del alumno: ");
+                Alumno posibleAlumno = Consola.leerAlumnoPorDni();
 
+                // Comprobar si el alumno realmente existe en la colección
+                for (Alumno real : coleccionAlumno) {
+                    if (real.equals(posibleAlumno)) {
+                        alumno = real;
+                        break;
+                    }
+                }
 
-            for (Alumno real : coleccionAlumo) {
-                controlador.buscar(alumno);
-                Matricula matricula = Consola.leerMatricula(real, asignaturas);
-                controlador.insertar(matricula);
-                System.out.println(matricula);
-            }
+                if (alumno == null) {
+                    System.out.println("Error: No se encontró un alumno con ese DNI. Inténtalo de nuevo.");
+                    return;
+                }
 
+            Asignatura[] asignaturasSeleccionadas = Consola.elegirAsignaturasMatricula(asignaturas);
+           if(asignaturasSeleccionadas!=null) {
+               Matricula matricula = Consola.leerMatricula(alumno, asignaturasSeleccionadas);
+               controlador.insertar(matricula);
+               System.out.println(matricula);
+               System.out.println("Matrícula insertada correctamente.");
+           }else{
+               System.out.println("No se puede rellenar matricula si no hay asignaturas en el sistema.");
+           }
 
-
-
-            System.out.println("Matrícula insertada correctamente.");
         }catch ( IllegalArgumentException| OperationNotSupportedException | NullPointerException e){
             System.out.println(e.getMessage());
         }
@@ -337,8 +349,10 @@ public class Vista {
 
         if (matriculasRegistradas != null && matriculasRegistradas.length > 0) {
             System.out.println("Matrículas registradas:");
+
             for (Matricula matricula : matriculasRegistradas) {
-                System.out.println(matricula);
+                Matricula buscar = controlador.buscar(matricula);
+                System.out.println(buscar);
             }
         } else {
             System.out.println("No existen matrículas registradas en el sistema actualmente.");
@@ -354,12 +368,13 @@ public class Vista {
 
 
         Alumno alumno = Consola.leerAlumnoPorDni();
-        alumno=controlador.buscar(alumno);
+        Alumno alumno1=controlador.buscar(alumno);
 
-
+       Matricula [] matriculas= controlador.getMatriculas(alumno1);
 
         System.out.println("Matrículas registradas:");
-        for (Matricula matricula : controlador.getMatriculas(alumno)) {
+        for (Matricula matricula : matriculas) {
+
             System.out.println(matricula);
         }
 
@@ -374,10 +389,9 @@ public class Vista {
 
 
             CicloFormativo cicloFormativo = Consola.getCicloFormativoPorCodigo();
-            cicloFormativo=controlador.buscar(cicloFormativo);
-
+           CicloFormativo cicloFormativo1=controlador.buscar(cicloFormativo);
             System.out.println("Matrículas registradas para el ciclo formativo: " );
-            for (Matricula matricula : controlador.getMatriculas(cicloFormativo)) {
+            for (Matricula matricula : controlador.getMatriculas(cicloFormativo1)) {
                 System.out.println(matricula);
             }
 
@@ -389,16 +403,16 @@ public class Vista {
 
         String cursoAcademico;
         cursoAcademico= Entrada.cadena();
-
+        Matricula[] coleccion=controlador.getMatriculas(cursoAcademico);
             System.out.println();
             System.out.println("Matrículas registradas para el curso académico: " );
-            for (Matricula matricula : controlador.getMatriculas(cursoAcademico)) {
+            for (Matricula matricula : coleccion) {
                 System.out.println(matricula);
             }
 
     }
 
-    private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException{
+    /*private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException{
         mostrarMatriculas();
         System.out.println("Elige la matricla que quiere anular");
 
@@ -410,7 +424,37 @@ public class Vista {
             matricula1.setFechaAnulacion(fechaAnulacion);
 
             System.out.println("Fecha de anulación insertada.");
+        System.out.println(matricula1);
 
+
+    }*/
+    private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
+        mostrarMatriculas();
+        System.out.println("Elige la matrícula que quieres anular:");
+
+        Matricula matriculaFicticia = Consola.getMatriculaPorIdentificador();
+        Matricula[] coleccionMatriculas = controlador.getMatriculas();
+
+        Matricula matriculaReal = null;
+
+        for (Matricula m : coleccionMatriculas) {
+            if (m.equals(matriculaFicticia)) {
+                matriculaReal = m;
+                break;
+            }
+        }
+
+        // Validar si la matrícula realmente existe
+        if (matriculaReal == null) {
+            System.out.println("Error: No se encontró ninguna matrícula con ese identificador.");
+            return;
+        }
+
+        LocalDate fechaAnulacion = Consola.leerFecha("Introduzca fecha de anulación:");
+        matriculaReal.setFechaAnulacion(fechaAnulacion);
+
+        System.out.println("Fecha de anulación insertada correctamente.");
+        System.out.println(matriculaReal);
 
 
     }
@@ -419,6 +463,7 @@ public class Vista {
 
 
     private void ejecutarOpcion(Opcion opcion)throws IllegalArgumentException, OperationNotSupportedException, NullPointerException{
+
         switch (opcion) {
 
             case INSERTAR_ALUMNO -> insertarAlumno();
@@ -445,12 +490,18 @@ public class Vista {
         }
     }
 
+
+
+
     public void setControlador(Controlador controlador){
         if(controlador==null ){
             throw new NullPointerException("ERROR: el controlador es nulo.");
         }
         this.controlador=controlador;
     }
+
+
+
     public void comenzar() {
        try {
 

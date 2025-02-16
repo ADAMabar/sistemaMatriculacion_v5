@@ -92,13 +92,13 @@ public class Modelo {
         return matriculas.get();
     }
     public Matricula[] getMatriculas(Alumno alumno) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
-        return matriculas.get();
+        return matriculas.get(alumno);
     }
     public Matricula[] getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
-        return matriculas.get();
+        return matriculas.get(cicloFormativo);
     }
     public Matricula[] getMatriculas(String cursoAcademico) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
-        return matriculas.get();
+        return matriculas.get(cursoAcademico);
     }
 
 

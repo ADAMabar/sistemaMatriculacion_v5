@@ -75,6 +75,23 @@ public class Matriculas {
         }
         return null;
     }
+/*
+public Matricula buscar(Matricula matricula) {
+    if (matricula == null) {
+        throw new NullPointerException("La matrícula no puede ser nula.");
+    }
+
+    int indice = buscarIndice(matricula);
+    if (indice != -1) {
+        Matricula matriculaReal = coleccionMatriculas[indice];
+
+        // Verificar que no sea una matrícula ficticia
+        if (matriculaReal.equals(matricula) && matriculaReal.getAlumno() != null) {
+            return matriculaReal;
+        }
+    }
+    return null;
+}*/
 
 
     public void borrar(Matricula matricula) throws OperationNotSupportedException {

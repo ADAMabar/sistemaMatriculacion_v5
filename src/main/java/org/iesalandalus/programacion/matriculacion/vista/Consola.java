@@ -342,35 +342,94 @@ public class Consola {
     return asignaturas;
     }
 */
-public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturas) {
-    mostrarAsignaturas(asignaturas);
-
-    System.out.print("Introduce el número de asignaturas en las que te quieres matricular: ");
-    int numAsignaturas = Entrada.entero();
-
-    int contador = 0;
-    for (int i = 0; i < numAsignaturas; i++) {
-        System.out.println("Introduce la asignatura " + (i + 1) + " por favor: ");
-        Asignatura asignatura = Consola.getAsignaturaPorCodigo();
-
-        // Verificamos si la asignatura no está ya matriculada
-        if (!Consola.asignaturaYaMatriculada(asignaturas, asignatura)) {
-            // Evitar desbordar el array
-            if (contador < asignaturas.length) {
-                asignaturas[contador] = asignatura;
-                contador++;
-                System.out.println("Asignatura insertada.");
-            } else {
-                System.out.println("No hay espacio suficiente en el array.");
-                break;
-            }
-        } else{
-            System.out.println("Esta asignatura no se insertó, ya está matriculada.");
+/*
+    public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturasDisponibles) {
+        if (asignaturasDisponibles == null || asignaturasDisponibles.length == 0) {
+            return null;
         }
+
+        mostrarAsignaturas(asignaturasDisponibles);
+
+        System.out.print("Introduce el número de asignaturas en las que te quieres matricular: ");
+        int numAsignaturas = Entrada.entero();
+
+        if (numAsignaturas <= 0) {
+            System.out.println("Debes matricular al menos una asignatura.");
+            return new Asignatura[0];
+        }
+
+        Asignatura[] asignaturasMatriculadas = new Asignatura[numAsignaturas];//aqui voy a almacenar temporalmente las asignaturas.
+        int contador = 0;
+
+
+            System.out.println("Introduce el código de la asignatura " + (contador + 1) + ": ");
+            Asignatura asignatura = getAsignaturaPorCodigo();
+
+
+            if (!asignaturaYaMatriculada(asignaturasMatriculadas, asignatura)) {
+                asignaturasMatriculadas[contador] = asignatura;
+                contador++;
+                System.out.println("Asignatura " + asignatura.getNombre() + " matriculada.");
+            } else {
+                System.out.println("Esta asignatura ya está matriculada, elige otra.");
+            }
+
+
+        return asignaturasMatriculadas;
+    }*/
+
+
+    public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturasDisponibles) {
+        if (asignaturasDisponibles == null || asignaturasDisponibles.length == 0) {
+            return null;
+        }
+
+        mostrarAsignaturas(asignaturasDisponibles);
+
+        System.out.print("Introduce el número de asignaturas en las que te quieres matricular: ");
+        int numAsignaturas = Entrada.entero();
+
+        if (numAsignaturas <= 0) {
+            System.out.println("Debes matricular al menos una asignatura.");
+            return new Asignatura[0];
+        }
+
+        Asignatura[] asignaturasMatriculadas = new Asignatura[numAsignaturas]; // Aquí almaceno temporalmente las asignaturas
+        int contador = 0;
+
+        while (contador < numAsignaturas) {
+            System.out.println("Introduce el código de la asignatura " + (contador + 1) + ": ");
+            Asignatura asignaturaFicticia = getAsignaturaPorCodigo(); // Se obtiene una asignatura ficticia
+
+            // Validar si la asignatura ficticia realmente existe en la colección
+            Asignatura asignaturaReal = null;
+            for (Asignatura asignatura : asignaturasDisponibles) {
+                if (asignatura.equals(asignaturaFicticia)) {
+                    asignaturaReal = asignatura;
+                    break;
+                }
+            }
+
+            if (asignaturaReal == null) {
+                System.out.println("Error: No se encontró la asignatura con ese código. Inténtalo de nuevo.");
+                continue; // Volver a pedir la asignatura
+            }
+
+            if (asignaturaYaMatriculada(asignaturasMatriculadas, asignaturaReal)) {
+                System.out.println("Error: Ya estás matriculado en esta asignatura.");
+            }
+
+            // **Agregar asignatura si es válida**
+            asignaturasMatriculadas[contador] = asignaturaReal;
+            contador++;
+            System.out.println("Asignatura " + asignaturaReal.getNombre() + " matriculada.");
+        }
+
+
+        return asignaturasMatriculadas;
     }
 
-    return asignaturas;
-}
+
 
 
     static boolean asignaturaYaMatriculada(Asignatura[] asignaturasMatriculadas, Asignatura asignatura) {
