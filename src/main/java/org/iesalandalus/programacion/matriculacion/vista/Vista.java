@@ -412,22 +412,7 @@ public class Vista {
 
     }
 
-    /*private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException{
-        mostrarMatriculas();
-        System.out.println("Elige la matricla que quiere anular");
 
-
-            Matricula matricula = Consola.getMatriculaPorIdentificador();
-            Matricula matricula1=controlador.buscar(matricula);
-
-            LocalDate fechaAnulacion=Consola.leerFecha("Introduzca fecha anulacion:");
-            matricula1.setFechaAnulacion(fechaAnulacion);
-
-            System.out.println("Fecha de anulación insertada.");
-        System.out.println(matricula1);
-
-
-    }*/
 
     private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
         mostrarMatriculas();
