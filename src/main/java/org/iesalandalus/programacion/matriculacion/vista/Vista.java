@@ -444,7 +444,7 @@ public class Vista {
             }
         }
 
-        // Validar si la matrícula realmente existe
+
         if (matriculaReal == null) {
             System.out.println("Error: No se encontró ninguna matrícula con ese identificador.");
             return;
