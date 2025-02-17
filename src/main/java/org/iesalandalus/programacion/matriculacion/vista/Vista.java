@@ -450,7 +450,6 @@ public class Vista {
             System.out.println("Error: No se encontró ninguna matrícula con ese identificador.");
             return;
         }
-
         LocalDate fechaAnulacion = Consola.leerFecha("Introduzca fecha de anulación:");
         matriculaReal.setFechaAnulacion(fechaAnulacion);
 

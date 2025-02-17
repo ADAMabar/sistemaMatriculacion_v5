@@ -399,9 +399,9 @@ public class Consola {
 
         while (contador < numAsignaturas) {
             System.out.println("Introduce el código de la asignatura " + (contador + 1) + ": ");
-            Asignatura asignaturaFicticia = getAsignaturaPorCodigo(); // Se obtiene una asignatura ficticia
+            Asignatura asignaturaFicticia = getAsignaturaPorCodigo();
 
-            // Validar si la asignatura ficticia realmente existe en la colección
+            // Valido si la asignatura ficticia realmente existe en la colección
             Asignatura asignaturaReal = null;
             for (Asignatura asignatura : asignaturasDisponibles) {
                 if (asignatura.equals(asignaturaFicticia)) {
@@ -412,7 +412,7 @@ public class Consola {
 
             if (asignaturaReal == null) {
                 System.out.println("Error: No se encontró la asignatura con ese código. Inténtalo de nuevo.");
-                continue; // Volver a pedir la asignatura
+                continue;
             }
 
             if (asignaturaYaMatriculada(asignaturasMatriculadas, asignaturaReal)) {
