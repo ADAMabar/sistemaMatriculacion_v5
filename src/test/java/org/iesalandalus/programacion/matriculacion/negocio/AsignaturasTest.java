@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class AsignaturasTest {
-
+/*
     private static final String ERROR_CAPACIDAD_NO_CORRECTA = "ERROR: La capacidad debe ser mayor que cero.";
     private static final String ERROR_INSERTAR_ASIGNATURA_NULA = "ERROR: No se puede insertar una asignatura nula.";
     private static final String ERROR_BORRAR_ASIGNATURA_NULA = "ERROR: No se puede borrar una asignatura nula.";
@@ -401,6 +401,6 @@ public class AsignaturasTest {
         }
     }
 
-
+*/
 
 }

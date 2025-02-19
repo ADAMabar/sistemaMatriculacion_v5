@@ -11,6 +11,10 @@ import org.iesalandalus.programacion.matriculacion.modelo.negocio.Matriculas;
 
 import javax.naming.OperationNotSupportedException;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.naming.OperationNotSupportedException;
+
 public class Modelo {
     public static final int CAPACIDAD = 3;
     private Alumnos alumnos;
@@ -21,8 +25,8 @@ public class Modelo {
     public void comenzar(){
         alumnos = new Alumnos(CAPACIDAD);
         matriculas = new Matriculas(CAPACIDAD);
-        asignaturas = new Asignaturas(CAPACIDAD);
-        ciclosFormativos = new CiclosFormativos(CAPACIDAD);
+        asignaturas = new Asignaturas();
+        ciclosFormativos = new CiclosFormativos();
     }
     public void terminar(){
         System.out.println("Modelo terminado.");
@@ -42,7 +46,6 @@ public class Modelo {
         return alumnos.get();
     }
 
-    
     public void insertar(Asignatura asignatura) throws OperationNotSupportedException,IllegalArgumentException,NullPointerException  {
         asignaturas.insertar(asignatura);
     }
@@ -55,7 +58,7 @@ public class Modelo {
         asignaturas.borrar(asignatura);
     }
 
-    public Asignatura[] getAsignaturas() {
+    public List<Asignatura> getAsignaturas() {
         return asignaturas.get();
     }
 
@@ -71,10 +74,9 @@ public class Modelo {
         ciclosFormativos.borrar(ciclo);
     }
 
-    public CicloFormativo[] getCiclosFormativos() {
+    public List<CicloFormativo> getCiclosFormativos() {
         return ciclosFormativos.get();
     }
-
 
     public void insertar(Matricula matricula) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         matriculas.insertar(matricula);
@@ -88,18 +90,16 @@ public class Modelo {
         matriculas.borrar(matricula);
     }
 
-    public Matricula[] getMatriculas() throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
+    public List<Matricula> getMatriculas() throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         return matriculas.get();
     }
-    public Matricula[] getMatriculas(Alumno alumno) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(Alumno alumno) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
         return matriculas.get(alumno);
     }
-    public Matricula[] getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
         return matriculas.get(cicloFormativo);
     }
-    public Matricula[] getMatriculas(String cursoAcademico) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(String cursoAcademico) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
         return matriculas.get(cursoAcademico);
     }
-
-
 }

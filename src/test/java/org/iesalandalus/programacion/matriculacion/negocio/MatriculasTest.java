@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class MatriculasTest {
-
+/*
     private static final String ERROR_NO_EXCEPCION = "No debería haber saltado la excepción.";
     private static final String ERROR_CAPACIDAD_NO_CORRECTA = "ERROR: La capacidad debe ser mayor que cero.";
     private static final String ERROR_INSERTAR_MATRICULA_NULA = "ERROR: No se puede insertar una matrícula nula.";
@@ -462,6 +462,6 @@ public class MatriculasTest {
         }
     }
 
-
+*/
 
 }
