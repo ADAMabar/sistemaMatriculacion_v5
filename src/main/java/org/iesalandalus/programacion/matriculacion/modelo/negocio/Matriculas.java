@@ -9,7 +9,7 @@ import javax.naming.OperationNotSupportedException;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.naming.OperationNotSupportedException;
+
 
 public class Matriculas {
     private List<Matricula> coleccionMatriculas;
@@ -23,7 +23,7 @@ public class Matriculas {
         this.coleccionMatriculas = new ArrayList<>(capacidad);
     }
 
-    public List<Matricula> get() throws OperationNotSupportedException {
+    public List<Matricula> get() throws OperationNotSupportedException{
         List<Matricula> copia = new ArrayList<>();
         for (Matricula matricula : coleccionMatriculas) {
             copia.add(new Matricula(matricula));
@@ -102,4 +102,3 @@ public class Matriculas {
         return resultado;
     }
 }
-
