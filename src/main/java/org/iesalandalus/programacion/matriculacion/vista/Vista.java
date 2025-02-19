@@ -464,7 +464,7 @@ public class Vista {
 
     private void ejecutarOpcion(Opcion opcion)throws IllegalArgumentException, OperationNotSupportedException, NullPointerException{
 
-        switch (opcion) {//
+        switch (opcion) {
 
             case INSERTAR_ALUMNO -> insertarAlumno();
             case BUSCAR_ALUMNO -> buscarAlumno();
