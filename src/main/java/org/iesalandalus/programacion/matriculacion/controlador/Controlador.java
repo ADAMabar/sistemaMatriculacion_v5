@@ -9,20 +9,21 @@ import org.iesalandalus.programacion.matriculacion.vista.Vista;
 
 import javax.naming.OperationNotSupportedException;
 
+import java.util.List;
+
 public class Controlador {
     private Modelo modelo;
     private Vista vista;
 
     public Controlador(Modelo modelo, Vista vista){
-
-        if(modelo== null){
+        if(modelo == null){
             throw new NullPointerException("ERROR: El modelo no puede ser nulo.");
         }
-        if (vista==null){
+        if (vista == null){
             throw new NullPointerException("ERROR: La vista no puede ser nula.");
         }
-        this.modelo=modelo;
-        this.vista=vista;
+        this.modelo = modelo;
+        this.vista = vista;
         vista.setControlador(this);
     }
 
@@ -38,10 +39,9 @@ public class Controlador {
         modelo.insertar(alumno);
     }
     public Alumno buscar(Alumno alumno){
-        modelo.buscar(alumno);
-        return alumno;
+        return modelo.buscar(alumno);
     }
-    public void borrar(Alumno alumno)throws OperationNotSupportedException{
+    public void borrar(Alumno alumno) throws OperationNotSupportedException {
         modelo.borrar(alumno);
     }
     public Alumno[] getAlumnos(){
@@ -53,67 +53,56 @@ public class Controlador {
     }
 
     public Asignatura buscar(Asignatura asignatura) {
-        modelo.buscar(asignatura);
-        return asignatura;
+        return modelo.buscar(asignatura);
     }
 
-    public void borrar(Asignatura asignatura) throws OperationNotSupportedException, NullPointerException {
+    public void borrar(Asignatura asignatura) throws OperationNotSupportedException {
         modelo.borrar(asignatura);
     }
 
-    public Asignatura[] getAsignaturas() {
+    public List<Asignatura> getAsignaturas() {
         return modelo.getAsignaturas();
     }
-
 
     public void insertar(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
         modelo.insertar(cicloFormativo);
     }
 
-    public CicloFormativo buscar(CicloFormativo ciclo) throws NullPointerException {
-        modelo.buscar(ciclo);
-        return ciclo;
+    public CicloFormativo buscar(CicloFormativo ciclo) {
+        return modelo.buscar(ciclo);
     }
 
     public void borrar(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
         modelo.borrar(cicloFormativo);
     }
 
-    public CicloFormativo[] getCiclosFormativos() {
+    public List<CicloFormativo> getCiclosFormativos() {
         return modelo.getCiclosFormativos();
     }
-
 
     public void insertar(Matricula matricula) throws OperationNotSupportedException {
         modelo.insertar(matricula);
     }
 
     public Matricula buscar(Matricula matricula) {
-        modelo.buscar(matricula);
-        return matricula;
+        return modelo.buscar(matricula);
     }
 
     public void borrar(Matricula matricula) throws OperationNotSupportedException {
         modelo.borrar(matricula);
     }
 
-    public Matricula[] getMatriculas() throws OperationNotSupportedException {
+    public List<Matricula> getMatriculas() throws OperationNotSupportedException {
         return modelo.getMatriculas();
     }
 
-    public Matricula[] getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
+    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
         return modelo.getMatriculas(cicloFormativo);
     }
-    public Matricula[] getMatriculas(Alumno alumno) throws OperationNotSupportedException {
+    public List<Matricula> getMatriculas(Alumno alumno) throws OperationNotSupportedException {
         return modelo.getMatriculas(alumno);
     }
-    public Matricula[] getMatriculas(String cursoAcademico) throws OperationNotSupportedException {
+    public List<Matricula> getMatriculas(String cursoAcademico) throws OperationNotSupportedException {
         return modelo.getMatriculas(cursoAcademico);
     }
-
-
-
-
-
-
 }
