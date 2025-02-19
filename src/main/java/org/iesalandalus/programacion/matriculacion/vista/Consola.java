@@ -315,68 +315,7 @@ public class Consola {
             System.out.println(asignatura);
         }
     }
-/*
-    public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturas ){
-     mostrarAsignaturas(asignaturas);
-        int contador;
-        int numAsignaturas = 0;
-        System.out.print("introduce el numero de asigaturas en las que te quieres matricular: ");
-        contador = Entrada.entero();
-        numAsignaturas = contador + numAsignaturas;
 
-        Asignatura asignatura;
-        for (int i = 0; i < numAsignaturas; i++) {
-            System.out.println("Introduce la asignatura " + (i + 1) + " por favor: ");
-
-
-            asignatura = Consola.getAsignaturaPorCodigo();
-
-            if (!Consola.asignaturaYaMatriculada(asignaturas, asignatura)) {
-
-                asignaturas[i] = asignatura;
-                System.out.println("Asignatura insertada.");
-            } else {
-                System.out.println("Esta asignatura no se insertó, ya está matriculada.");
-            }
-        }
-    return asignaturas;
-    }
-*/
-/*
-    public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturasDisponibles) {
-        if (asignaturasDisponibles == null || asignaturasDisponibles.length == 0) {
-            return null;
-        }
-
-        mostrarAsignaturas(asignaturasDisponibles);
-
-        System.out.print("Introduce el número de asignaturas en las que te quieres matricular: ");
-        int numAsignaturas = Entrada.entero();
-
-        if (numAsignaturas <= 0) {
-            System.out.println("Debes matricular al menos una asignatura.");
-            return new Asignatura[0];
-        }
-
-        Asignatura[] asignaturasMatriculadas = new Asignatura[numAsignaturas];//aqui voy a almacenar temporalmente las asignaturas.
-        int contador = 0;
-
-
-            System.out.println("Introduce el código de la asignatura " + (contador + 1) + ": ");
-            Asignatura asignatura = getAsignaturaPorCodigo();
-
-
-            if (!asignaturaYaMatriculada(asignaturasMatriculadas, asignatura)) {
-                asignaturasMatriculadas[contador] = asignatura;
-                contador++;
-                System.out.println("Asignatura " + asignatura.getNombre() + " matriculada.");
-            } else {
-                System.out.println("Esta asignatura ya está matriculada, elige otra.");
-            }
-
-
-        return asignaturasMatriculadas;
-    }*/
 
 
     public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturasDisponibles) {
