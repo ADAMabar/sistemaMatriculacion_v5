@@ -505,7 +505,7 @@ public class Vista {
     public void comenzar() {
        try {
 
-        Opcion opcion;//
+        Opcion opcion;
         do {
 
             opcion = Consola.elegirOpcion();
