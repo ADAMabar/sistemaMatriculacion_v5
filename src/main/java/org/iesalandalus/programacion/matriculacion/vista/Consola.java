@@ -3,6 +3,9 @@ package org.iesalandalus.programacion.matriculacion.vista;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
@@ -36,7 +39,7 @@ public class Consola {
         while (true) {
 
             opcion = Entrada.entero();
-            if (opcion >= 0 || opcion > Opcion.values().length) {
+            if (opcion >= 0 && opcion < Opcion.values().length) {
                 return Opcion.values()[opcion];
             } else {
                 System.out.println("ERROR: No puedes elegir una opción inexistente.");
@@ -301,7 +304,7 @@ public class Consola {
 
         return new Asignatura(codigo,"ficticio",111,Curso.PRIMERO,2,EspecialidadProfesorado.INFORMATICA,cicloFormativo);
     }
-
+/*
     private static void mostrarAsignaturas(Asignatura[] asignaturas) {
         System.out.println("Lista de Asignaturas");
         System.out.println("====================");
@@ -314,10 +317,23 @@ public class Consola {
         for (Asignatura asignatura : asignaturas) {
             System.out.println(asignatura);
         }
+    }*/
+private static void mostrarAsignaturas(List<Asignatura> asignaturas) {
+    System.out.println("Lista de Asignaturas");
+    System.out.println("====================");
+
+    if (asignaturas == null || asignaturas.isEmpty()) {
+        System.out.println("No hay asignaturas registradas en este momento.");
+        return;
     }
 
+    for (Asignatura asignatura : asignaturas) {
+        System.out.println(asignatura);
+    }
+}
 
 
+/*
     public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturasDisponibles) {
         if (asignaturasDisponibles == null || asignaturasDisponibles.length == 0) {
             return null;
@@ -366,11 +382,62 @@ public class Consola {
 
 
         return asignaturasMatriculadas;
+    }*/
+
+
+
+    public static ArrayList<Asignatura> elegirAsignaturasMatricula(List<Asignatura> asignaturasDisponibles) {
+        if (asignaturasDisponibles == null || asignaturasDisponibles.isEmpty()) {
+            return null;
+        }
+
+        mostrarAsignaturas(asignaturasDisponibles);
+
+        System.out.print("Introduce el número de asignaturas en las que te quieres matricular: ");
+        int numAsignaturas = Entrada.entero();
+
+        if (numAsignaturas <= 0) {
+            System.out.println("Debes matricular al menos una asignatura.");
+            return new ArrayList<>();
+        }
+
+        ArrayList<Asignatura> asignaturasMatriculadas = new ArrayList<>(); // Usamos ArrayList para almacenar las asignaturas matriculadas
+        int contador = 0;
+
+        while (contador < numAsignaturas) {
+            System.out.println("Introduce el código de la asignatura " + (contador + 1) + ": ");
+            Asignatura asignaturaFicticia = getAsignaturaPorCodigo();
+
+            // Valido si la asignatura ficticia realmente existe en la colección
+            Asignatura asignaturaReal = null;
+            for (Asignatura asignatura : asignaturasDisponibles) {
+                if (asignatura.equals(asignaturaFicticia)) {
+                    asignaturaReal = asignatura;
+                    break;
+                }
+            }
+
+            if (asignaturaReal == null) {
+                System.out.println("Error: No se encontró la asignatura con ese código. Inténtalo de nuevo.");
+                continue;
+            }
+
+            if (asignaturaYaMatriculada(asignaturasMatriculadas, asignaturaReal)) {
+                System.out.println("Error: Ya estás matriculado en esta asignatura.");
+                continue;
+            }
+
+            // **Agregar asignatura si es válida**
+            asignaturasMatriculadas.add(asignaturaReal); // Agregamos la asignatura a la lista
+            contador++;
+            System.out.println("Asignatura " + asignaturaReal.getNombre() + " matriculada.");
+        }
+
+        return asignaturasMatriculadas;
     }
 
 
-
-
+/*
     static boolean asignaturaYaMatriculada(Asignatura[] asignaturasMatriculadas, Asignatura asignatura) {
         if (asignaturasMatriculadas == null || asignatura == null) {
             return false;
@@ -382,9 +449,16 @@ public class Consola {
             }
         }
         return false;
+    }*/
+static boolean asignaturaYaMatriculada(ArrayList<Asignatura> asignaturasMatriculadas, Asignatura asignatura) {
+    if (asignaturasMatriculadas == null || asignatura == null) {
+        return false;
     }
 
-    public static Matricula leerMatricula(Alumno alumno, Asignatura[] asignaturas)throws OperationNotSupportedException {
+    return asignaturasMatriculadas.contains(asignatura); // Verifica si la asignatura ya está en la lista
+}
+
+    public static Matricula leerMatricula(Alumno alumno, List<Asignatura> asignaturas)throws OperationNotSupportedException {
         int idMatricula;
         String cursoAdemico;
         LocalDate fecha;
@@ -416,7 +490,7 @@ public class Consola {
     }
 
 
-
+/*
 
     public static Matricula getMatriculaPorIdentificador() throws OperationNotSupportedException {
         int id;
@@ -434,5 +508,28 @@ public class Consola {
         Alumno alumno=new Alumno("fictico","12345678Z", "ficticio@GMAIL.COM", "123456789",  fechaFicticia);
         return new Matricula(id,"24-25",LocalDate.now(),alumno,asignaturas);
 
+    }*/
+public static Matricula getMatriculaPorIdentificador() throws OperationNotSupportedException {
+    int id;
+    LocalDate fechaFicticia;
+
+    Asignaturas asignaturas1 = new Asignaturas(); // Suponiendo que Asignaturas es una clase que tiene un constructor con un parámetro.
+    System.out.println("Introduce el identificador numerico de la matricula: ");
+
+    try {
+        id = Entrada.entero(); // Se asume que Entrada.entero() es un método que devuelve un número entero.
+    } catch (IllegalArgumentException e) {
+        throw new IllegalArgumentException("ERROR: porfavor vuele a introducir bien el id numerico");
     }
+
+    // Convertir el array a un ArrayList
+    List<Asignatura> asignaturas = asignaturas1.get(); // Esto convierte el array a un ArrayList
+
+    fechaFicticia = LocalDate.of(2000, 1, 1);
+    Alumno alumno = new Alumno("fictico", "12345678Z", "ficticio@GMAIL.COM", "123456789", fechaFicticia);
+
+    return new Matricula(id, "24-25", LocalDate.now(), alumno, asignaturas);
+}
+
+
 }

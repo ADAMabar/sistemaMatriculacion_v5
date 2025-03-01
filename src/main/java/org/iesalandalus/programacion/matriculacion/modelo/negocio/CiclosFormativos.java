@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class CiclosFormativos {
 
     private List<CicloFormativo> coleccionCiclosFormativos;
@@ -45,9 +46,11 @@ public class CiclosFormativos {
         if (cicloFormativo == null) {
             throw new NullPointerException("El ciclo formativo no puede ser nulo.");
         }
-        for (CicloFormativo ciclo : coleccionCiclosFormativos) {
-            if (ciclo.equals(cicloFormativo)) {
-                return new CicloFormativo(ciclo);
+
+
+        for (int i = 0; i < getTamano(); i++) {
+            if (coleccionCiclosFormativos.get(i).equals(cicloFormativo)) {
+                return new CicloFormativo(coleccionCiclosFormativos.get(i));
             }
         }
         return null;
@@ -57,12 +60,19 @@ public class CiclosFormativos {
         if (cicloFormativo == null) {
             throw new NullPointerException("ERROR: No se puede borrar un ciclo formativo nulo.");
         }
-        if (!coleccionCiclosFormativos.remove(cicloFormativo)) {
-            throw new OperationNotSupportedException("ERROR: No existe ningún ciclo formativo como el indicado.");
+
+
+        for (int i = 0; i < getTamano(); i++) {
+            if (coleccionCiclosFormativos.get(i).equals(cicloFormativo)) {
+                coleccionCiclosFormativos.remove(i);
+                return cicloFormativo;
+            }
         }
-        return cicloFormativo;
+
+        throw new OperationNotSupportedException("ERROR: No existe ningún ciclo formativo como el indicado.");
     }
 }
+
 
 
 

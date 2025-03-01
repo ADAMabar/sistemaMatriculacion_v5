@@ -32,7 +32,7 @@ public class Asignaturas {
         if (asignatura == null) {
             throw new NullPointerException("ERROR: No se puede insertar una asignatura nula.");
         }
-        if (coleccionAsignaturas.contains(asignatura)) {
+        if (buscar(asignatura) != null) {
             throw new OperationNotSupportedException("ERROR: Ya existe una asignatura con ese código.");
         }
         coleccionAsignaturas.add(new Asignatura(asignatura));
@@ -42,9 +42,11 @@ public class Asignaturas {
         if (asignatura == null) {
             throw new NullPointerException("ERROR: La asignatura no puede ser nula.");
         }
-        int indice = coleccionAsignaturas.indexOf(asignatura);
-        if (indice != -1) {
-            return coleccionAsignaturas.get(indice);
+
+        for (int i = 0; i < getTamano(); i++) {
+            if (coleccionAsignaturas.get(i).equals(asignatura)) {
+                return coleccionAsignaturas.get(i);
+            }
         }
         return null;
     }
@@ -53,10 +55,15 @@ public class Asignaturas {
         if (asignatura == null) {
             throw new NullPointerException("ERROR: No se puede borrar una asignatura nula.");
         }
-        if (!coleccionAsignaturas.remove(asignatura)) {
-            throw new OperationNotSupportedException("ERROR: No existe ninguna asignatura como la indicada.");
+
+
+        for (int i = 0; i < getTamano(); i++) {
+            if (coleccionAsignaturas.get(i).equals(asignatura)) {
+                coleccionAsignaturas.remove(i);
+                return asignatura;
+            }
         }
-        return asignatura;
+
+        throw new OperationNotSupportedException("ERROR: No existe ninguna asignatura como la indicada.");
     }
 }
-

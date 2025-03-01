@@ -10,10 +10,8 @@ import org.iesalandalus.programacion.matriculacion.modelo.negocio.CiclosFormativ
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.Matriculas;
 
 import javax.naming.OperationNotSupportedException;
-
-import java.util.ArrayList;
 import java.util.List;
-import javax.naming.OperationNotSupportedException;
+
 
 public class Modelo {
     public static final int CAPACIDAD = 3;
@@ -23,8 +21,8 @@ public class Modelo {
     private Matriculas matriculas;
 
     public void comenzar(){
-        alumnos = new Alumnos(CAPACIDAD);
-        matriculas = new Matriculas(CAPACIDAD);
+        alumnos = new Alumnos();
+        matriculas = new Matriculas();
         asignaturas = new Asignaturas();
         ciclosFormativos = new CiclosFormativos();
     }
@@ -42,7 +40,7 @@ public class Modelo {
         alumnos.borrar(alumno);
     }
 
-    public Alumno[] getAlumnos(){
+    public List<Alumno>getAlumnos(){
         return alumnos.get();
     }
 
@@ -93,13 +91,13 @@ public class Modelo {
     public List<Matricula> getMatriculas() throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         return matriculas.get();
     }
-    public List<Matricula> getMatriculas(Alumno alumno) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(Alumno alumno) throws IllegalArgumentException,NullPointerException  {
         return matriculas.get(alumno);
     }
-    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) throws IllegalArgumentException,NullPointerException  {
         return matriculas.get(cicloFormativo);
     }
-    public List<Matricula> getMatriculas(String cursoAcademico) throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(String cursoAcademico) throws IllegalArgumentException,NullPointerException  {
         return matriculas.get(cursoAcademico);
     }
 }

@@ -44,7 +44,7 @@ public class Controlador {
     public void borrar(Alumno alumno) throws OperationNotSupportedException {
         modelo.borrar(alumno);
     }
-    public Alumno[] getAlumnos(){
+    public List<Alumno> getAlumnos(){
         return modelo.getAlumnos();
     }
 
