@@ -206,7 +206,7 @@ public class Vista {
         try {
 
             CicloFormativo cicloFormativo1 = Consola.getCicloFormativoPorCodigo();
-            List<CicloFormativo> coleccionCiclos = controlador.getCiclosFormativos(); // Cambiado a List
+            List<CicloFormativo> coleccionCiclos = controlador.getCiclosFormativos();
             boolean cicloEncontrado = false;
 
             for (CicloFormativo cicloFormativo : coleccionCiclos) {
