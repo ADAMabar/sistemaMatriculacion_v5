@@ -276,7 +276,7 @@ public class Vista {
             System.out.print("Introduce el DNI del alumno: ");
             Alumno posibleAlumno = Consola.leerAlumnoPorDni();
 
-            // Comprobar si el alumno realmente existe en la colección
+
             for (Alumno real : coleccionAlumno) {
                 if (real.equals(posibleAlumno)) {
                     alumno = real;
