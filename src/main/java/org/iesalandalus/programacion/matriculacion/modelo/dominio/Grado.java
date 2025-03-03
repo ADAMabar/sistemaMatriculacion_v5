@@ -1,20 +1,67 @@
 package org.iesalandalus.programacion.matriculacion.modelo.dominio;
 
-public enum Grado {
-    GDCFGB("Grado D Ciclo Formativo de Grado Básico"), GDCFGM("Grado D Ciclo formativo de Grado Medio"), GDCFGS("Grado D Ciclo Formativo de Grado Superior");
+public class Grado {
 
-private String cadenaAMostrar;
+    protected String nombre;       // Atributo protegido
+    protected String iniciales;    // Atributo protegido
+    protected int numAnios;        // Atributo protegido
 
-private Grado(String cadenaAMostrar){
-    this.cadenaAMostrar=cadenaAMostrar;
-}
-    public String imprimir() {
-        return this.ordinal() + ".-" + this.cadenaAMostrar;
+    // Constructor
+    public Grado(String nombre) {
+        this.setNombre(nombre);  // Usamos el setter para validar el nombre y establecer iniciales
+        // No asignamos directamente numAnios, ya que se establece por separado
     }
 
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    protected void setNombre(String nombre) throws IllegalArgumentException {
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre no puede ser nulo ni vacío.");
+        }
+        this.nombre = nombre;
+        setIniciales();
+    }
+
+
+    protected String getIniciales() {
+        return iniciales;
+    }
+
+    // Método setIniciales que genera las iniciales del grado en mayúsculas
+    private void setIniciales() {
+        String[] palabras = nombre.split(" ");
+        StringBuilder inicialesBuilder = new StringBuilder();
+
+        for (String palabra : palabras) {
+            if (!palabra.isEmpty()) {
+                inicialesBuilder.append(palabra.charAt(0));
+            }
+        }
+
+        this.iniciales = inicialesBuilder.toString().toUpperCase();
+    }
+
+    // Método toString para devolver la cadena en el formato requerido
     @Override
     public String toString() {
-        return this.cadenaAMostrar;
+        return "(" + iniciales + ") - " + nombre;
+    }
+
+    // Método setNumAnios con validación para que el número de años sea mayor que 0
+    protected void setNumAnios(int numAnios) {
+        if (numAnios <= 0) {
+            throw new IllegalArgumentException("El número de años debe ser mayor que 0.");
+        }
+        this.numAnios = numAnios;
+    }
+
+    // Método getNumAnios
+    protected int getNumAnios() {
+        return numAnios;
     }
 }
+
 

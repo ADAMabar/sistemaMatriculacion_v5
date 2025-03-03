@@ -1,11 +1,5 @@
 package org.iesalandalus.programacion.matriculacion.dominio;
 
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.Grado;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class CicloFormativoTest {
 /*
     private static final String CADENA_NO_ESPERADA = "La cadena devuelta no es la esperada.";

@@ -14,9 +14,11 @@ import java.util.List;
 public class Vista {
     private Controlador controlador;
 
+ public Vista(){
+     Opcion.setVista(this);
+ }
 
-
-    private void insertarAlumno() {
+    public void insertarAlumno() {
         System.out.println("===============");
         System.out.println("Insertar Alumno.");
         System.out.println("===============");
@@ -31,7 +33,7 @@ public class Vista {
         }
     }
 
-    private void buscarAlumno() {
+     public void buscarAlumno() {
         System.out.println("=============");
         System.out.println("Buscar alumno.");
         System.out.println("=============");
@@ -62,7 +64,7 @@ public class Vista {
     }
 
 
-    private void borrarAlumno() {
+ public void borrarAlumno() {
         System.out.println("=============");
         System.out.println("Borrar alumno.");
         System.out.println("=============");
@@ -79,7 +81,7 @@ public class Vista {
         }
     }
 
-    private void mostrarAlumnos() {
+    public void mostrarAlumnos() {
         System.out.println("==================");
         System.out.println("Listado de Alumnos");
         System.out.println("==================");
@@ -94,7 +96,7 @@ public class Vista {
       coleccionAlumnos.forEach(System.out::println);
     }
 
-    private void insertarAsignatura() {
+    public void insertarAsignatura() {
         System.out.println("======================");
         System.out.println("Listado de Asignaturas");
         System.out.println("======================");
@@ -121,7 +123,7 @@ public class Vista {
         }
     }
 
-    private void buscarAsignatura() {
+    public void buscarAsignatura() {
         System.out.println("==================");
         System.out.println("Buscar Asignatura.");
         System.out.println("==================");
@@ -155,7 +157,7 @@ public class Vista {
     }
 
 
-    private void borrarAsignatura()  {
+    public void borrarAsignatura()  {
         System.out.println("==================");
         System.out.println("Borrar Asignatura.");
         System.out.println("==================");
@@ -171,7 +173,7 @@ public class Vista {
         }
     }
 
-    private void mostrarAsignaturas() {
+    public void mostrarAsignaturas() {
         System.out.println("====================");
         System.out.println("Listado de Asignaturas");
         System.out.println("====================");
@@ -183,7 +185,7 @@ public class Vista {
           coleccionAsignaturas.forEach(System.out::println);
         }
     }
-    private void insertarCicloFormativo()  {
+    public void insertarCicloFormativo()  {
         System.out.println("=========================");
         System.out.println("Insertar Ciclo Formativo.");
         System.out.println("=========================");
@@ -198,7 +200,7 @@ public class Vista {
         }
     }
 
-    private void buscarCicloFormativo() {
+    public void buscarCicloFormativo() {
         System.out.println("=========================");
         System.out.println("Buscar Ciclo Formativo.");
         System.out.println("=========================");
@@ -228,7 +230,7 @@ public class Vista {
     }
 
 
-    private void borrarCicloFormativo(){
+    public void borrarCicloFormativo(){
         System.out.println("=========================");
         System.out.println("Borrar Ciclo Formativo.");
         System.out.println("=========================");
@@ -244,7 +246,7 @@ public class Vista {
     }
     }
 
-    private void mostrarCiclosFormativos() {
+    public void mostrarCiclosFormativos() {
         System.out.println("==============================");
         System.out.println("Listado de Ciclos Formativos.");
         System.out.println("==============================");
@@ -258,7 +260,7 @@ public class Vista {
         }
     }
 
-    private void insertarMatricula() {
+    public void insertarMatricula() {
         System.out.println("ALUMNOS");
         mostrarAlumnos();
         System.out.println("ASIGNATURAS");
@@ -306,7 +308,7 @@ public class Vista {
     }
 
 
-    private void buscarMatricula() {
+    public void buscarMatricula() {
         System.out.println("=====================");
         System.out.println("Buscar Matrícula.");
         System.out.println("=====================");
@@ -339,7 +341,7 @@ public class Vista {
     }
 
 
-    private void mostrarMatriculas() throws OperationNotSupportedException {
+    public void mostrarMatriculas() throws OperationNotSupportedException {
         System.out.println("=====================");
         System.out.println("Listado de Matrículas");
         System.out.println("=====================");
@@ -356,7 +358,7 @@ public class Vista {
         }
     }
 
-private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException {
+public void mostrarMatriculasPorAlumno() throws OperationNotSupportedException {
     System.out.println("=====================");
     System.out.println("Mostrar Matrícula de alumno");
     System.out.println("=====================");
@@ -378,7 +380,7 @@ private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException 
 
 
 
-    private void mostrarMatriculasPorCicloFormativo()  throws IllegalArgumentException,OperationNotSupportedException,NullPointerException {
+    public void mostrarMatriculasPorCicloFormativo()  throws IllegalArgumentException,OperationNotSupportedException,NullPointerException {
         System.out.println("========================================");
         System.out.println("Mostrar Matrículas por Ciclo Formativo");
         System.out.println("========================================");
@@ -400,7 +402,7 @@ private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException 
 
     }
 
-    private void mostrarMatriculasPorCursoAcademico() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
+    public void mostrarMatriculasPorCursoAcademico() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
         System.out.println("====================================");
         System.out.println("Mostrar Matrículas por Curso Académico");
         System.out.println("====================================");
@@ -422,7 +424,7 @@ private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException 
 
     }
 
-    private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
+    public void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
         mostrarMatriculas();
         System.out.println("Elige la matrícula que quieres anular:");
 
