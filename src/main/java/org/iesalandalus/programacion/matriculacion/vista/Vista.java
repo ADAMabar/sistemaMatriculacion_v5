@@ -214,7 +214,7 @@ public class Vista {
                 if (cicloFormativo.equals(cicloFormativo1)) {
                     System.out.println(cicloFormativo);
                     cicloEncontrado = true;
-                    break; // Salir del bucle si se encuentra el ciclo
+                    break;
                 }
             }
 
