@@ -263,8 +263,6 @@ public class Vista {
         mostrarAlumnos();
         System.out.println("ASIGNATURAS");
         mostrarAsignaturas();
-        System.out.println("CICLOS FORMATIVOS");
-        mostrarCiclosFormativos();
         System.out.println("=====================");
         System.out.println("Insertar Matrícula.");
         System.out.println("=====================");
@@ -357,25 +355,7 @@ public class Vista {
             System.out.println("No existen matrículas registradas en el sistema actualmente.");
         }
     }
-/*
-    private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException  {
-        System.out.println("=====================");
-        System.out.println("Mostrar Matricula de alumno");
-        System.out.println("=====================");
 
-
-        Alumno alumno = Consola.leerAlumnoPorDni();
-        Alumno alumno1=controlador.buscar(alumno);
-
-       Matricula [] matriculas= controlador.getMatriculas(alumno1);
-
-        System.out.println("Matrículas registradas:");
-        for (Matricula matricula : matriculas) {
-
-            System.out.println(matricula);
-        }
-
-    }*/
 private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException {
     System.out.println("=====================");
     System.out.println("Mostrar Matrícula de alumno");
@@ -419,22 +399,7 @@ private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException 
         }
 
     }
-    /*
-    private void mostrarMatriculasPorCursoAcademico() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException{
-        System.out.println("====================================");
-        System.out.println("Mostrar Matrículas por Curso Académico");
-        System.out.println("====================================");
 
-        String cursoAcademico;
-        cursoAcademico= Entrada.cadena();
-        Matricula[] coleccion=controlador.getMatriculas(cursoAcademico);
-            System.out.println();
-            System.out.println("Matrículas registradas para el curso académico: " );
-            for (Matricula matricula : coleccion) {
-                System.out.println(matricula);
-            }
-
-    }*/
     private void mostrarMatriculasPorCursoAcademico() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
         System.out.println("====================================");
         System.out.println("Mostrar Matrículas por Curso Académico");
@@ -456,58 +421,13 @@ private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException 
         }
 
     }
-    /*private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException{
-        mostrarMatriculas();
-        System.out.println("Elige la matricla que quiere anular");
 
-
-            Matricula matricula = Consola.getMatriculaPorIdentificador();
-            Matricula matricula1=controlador.buscar(matricula);
-
-            LocalDate fechaAnulacion=Consola.leerFecha("Introduzca fecha anulacion:");
-            matricula1.setFechaAnulacion(fechaAnulacion);
-
-            System.out.println("Fecha de anulación insertada.");
-        System.out.println(matricula1);
-
-
-    }*/
-/*
     private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
         mostrarMatriculas();
         System.out.println("Elige la matrícula que quieres anular:");
 
         Matricula matriculaFicticia = Consola.getMatriculaPorIdentificador();
-        Matricula[] coleccionMatriculas = controlador.getMatriculas();
-
-        Matricula matriculaReal = null;
-
-        for (Matricula m : coleccionMatriculas) {
-            if (m.equals(matriculaFicticia)) {
-                matriculaReal = m;
-                break;
-            }
-        }
-
-
-        if (matriculaReal == null) {
-            System.out.println("Error: No se encontró ninguna matrícula con ese identificador.");
-            return;
-        }
-        LocalDate fechaAnulacion = Consola.leerFecha("Introduzca fecha de anulación:");
-        matriculaReal.setFechaAnulacion(fechaAnulacion);
-
-        System.out.println("Fecha de anulación insertada correctamente.");
-        System.out.println(matriculaReal);
-
-
-    }
-*/
-    private void anularMatricula() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
-        mostrarMatriculas();
-        System.out.println("Elige la matrícula que quieres anular:");
-
-        Matricula matriculaFicticia = Consola.getMatriculaPorIdentificador();
+        Matricula buscar=controlador.buscar(matriculaFicticia);
         List<Matricula> coleccionMatriculas = controlador.getMatriculas();
 
         Matricula matriculaReal = null;
@@ -525,10 +445,10 @@ private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException 
         }
 
         LocalDate fechaAnulacion = Consola.leerFecha("Introduzca fecha de anulación:");
-        matriculaReal.setFechaAnulacion(fechaAnulacion);
+        buscar.setFechaAnulacion(fechaAnulacion);
 
         System.out.println("Fecha de anulación insertada correctamente.");
-        System.out.println(matriculaReal);
+        System.out.println(buscar);
     }
 
 
