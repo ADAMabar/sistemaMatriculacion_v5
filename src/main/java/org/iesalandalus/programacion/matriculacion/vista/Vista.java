@@ -496,7 +496,7 @@ private void mostrarMatriculasPorAlumno() throws OperationNotSupportedException 
     public void comenzar() {
        try {
 
-        Opcion opcion;//
+        Opcion opcion;
         do {
             System.out.println("Elige una opción:");
             opcion = Consola.elegirOpcion();
