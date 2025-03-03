@@ -126,7 +126,7 @@ public class Consola {
         System.out.println("===========================");
         System.out.println("Seleccione un grado de la lista:");
         for (Grado grado : Grado.values()) {
-            System.out.println(grado.imprimir());
+            System.out.println(grado.imprimir())
         }
         entrada = Entrada.entero();
         try {
