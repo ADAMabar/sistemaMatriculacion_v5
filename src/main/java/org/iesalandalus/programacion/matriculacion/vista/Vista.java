@@ -329,7 +329,7 @@ public class Vista {
                 System.out.println("Matrícula no existente.");
             }
 
-            if (coleccionMatriculas.isEmpty()) { // Cambiado a isEmpty() para listas
+            if (coleccionMatriculas.isEmpty()) {
                 System.out.println("No hay matrículas registradas.");
             }
 
