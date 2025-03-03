@@ -313,7 +313,7 @@ public class Vista {
 
         try {
             Matricula matriculaBuscada = Consola.getMatriculaPorIdentificador();
-            List<Matricula> coleccionMatriculas = controlador.getMatriculas(); // Cambiado a List
+            List<Matricula> coleccionMatriculas = controlador.getMatriculas();
 
             boolean encontrada = false;
             for (Matricula matricula : coleccionMatriculas) {
