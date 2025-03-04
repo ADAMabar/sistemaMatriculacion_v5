@@ -263,8 +263,6 @@ public class Vista {
     public void insertarMatricula() {
         System.out.println("ALUMNOS");
         mostrarAlumnos();
-        System.out.println("ASIGNATURAS");
-        mostrarAsignaturas();
         System.out.println("=====================");
         System.out.println("Insertar Matrícula.");
         System.out.println("=====================");

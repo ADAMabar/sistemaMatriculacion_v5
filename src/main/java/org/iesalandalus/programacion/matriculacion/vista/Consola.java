@@ -4,14 +4,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.Alumnos;
+
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.Asignaturas;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.CiclosFormativos;
+
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 import javax.naming.OperationNotSupportedException;
@@ -153,7 +152,7 @@ public class Consola {
         System.out.println("Seleccione un tipo de grado:");
 
         for (TiposGrado tipo : TiposGrado.values()) {
-            System.out.println(tipo.ordinal() + " - " + tipo);
+            System.out.println(tipo);
         }
 
         int entrada = Entrada.entero();
@@ -425,8 +424,8 @@ private static void mostrarAsignaturas(List<Asignatura> asignaturas) {
                 continue;
             }
 
-            // **Agregar asignatura si es válida**
-            asignaturasMatriculadas.add(asignaturaReal); // Agregamos la asignatura a la lista
+
+            asignaturasMatriculadas.add(asignaturaReal);
             contador++;
             System.out.println("Asignatura " + asignaturaReal.getNombre() + " matriculada.");
         }
