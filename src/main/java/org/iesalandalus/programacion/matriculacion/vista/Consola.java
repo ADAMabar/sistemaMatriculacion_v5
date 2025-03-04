@@ -384,59 +384,6 @@ private static void mostrarAsignaturas(List<Asignatura> asignaturas) {
 }
 
 
-/*
-    public static Asignatura[] elegirAsignaturasMatricula(Asignatura[] asignaturasDisponibles) {
-        if (asignaturasDisponibles == null || asignaturasDisponibles.length == 0) {
-            return null;
-        }
-
-        mostrarAsignaturas(asignaturasDisponibles);
-
-        System.out.print("Introduce el número de asignaturas en las que te quieres matricular: ");
-        int numAsignaturas = Entrada.entero();
-
-        if (numAsignaturas <= 0) {
-            System.out.println("Debes matricular al menos una asignatura.");
-            return new Asignatura[0];
-        }
-
-        Asignatura[] asignaturasMatriculadas = new Asignatura[numAsignaturas]; // Aquí almaceno temporalmente las asignaturas
-        int contador = 0;
-
-        while (contador < numAsignaturas) {
-            System.out.println("Introduce el código de la asignatura " + (contador + 1) + ": ");
-            Asignatura asignaturaFicticia = getAsignaturaPorCodigo();
-
-            // Valido si la asignatura ficticia realmente existe en la colección
-            Asignatura asignaturaReal = null;
-            for (Asignatura asignatura : asignaturasDisponibles) {
-                if (asignatura.equals(asignaturaFicticia)) {
-                    asignaturaReal = asignatura;
-                    break;
-                }
-            }
-
-            if (asignaturaReal == null) {
-                System.out.println("Error: No se encontró la asignatura con ese código. Inténtalo de nuevo.");
-                continue;
-            }
-
-            if (asignaturaYaMatriculada(asignaturasMatriculadas, asignaturaReal)) {
-                System.out.println("Error: Ya estás matriculado en esta asignatura.");
-            }
-
-            // **Agregar asignatura si es válida**
-            asignaturasMatriculadas[contador] = asignaturaReal;
-            contador++;
-            System.out.println("Asignatura " + asignaturaReal.getNombre() + " matriculada.");
-        }
-
-
-        return asignaturasMatriculadas;
-    }*/
-
-
-
     public static ArrayList<Asignatura> elegirAsignaturasMatricula(List<Asignatura> asignaturasDisponibles) {
         if (asignaturasDisponibles == null || asignaturasDisponibles.isEmpty()) {
             return null;
