@@ -3,9 +3,9 @@ package org.iesalandalus.programacion.matriculacion.modelo.dominio;
 public class GradoE extends Grado {
     private int numEdiciones;
 
-    // Constructor
+
     public GradoE(String nombre, int numAnios, int numEdiciones) {
-        super(nombre); // Llama al constructor de la clase base Grado
+        super(nombre);
         this.setNumAnios(1);
         this.setNumEdiciones(numEdiciones);
     }

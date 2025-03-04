@@ -44,7 +44,7 @@ public class Grado {
         this.iniciales = inicialesBuilder.toString().toUpperCase();
     }
 
-    // Método toString para devolver la cadena en el formato requerido
+
     @Override
     public String toString() {
         return "(" + iniciales + ") - " + nombre;
