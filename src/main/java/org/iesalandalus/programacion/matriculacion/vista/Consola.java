@@ -476,8 +476,6 @@ static boolean asignaturaYaMatriculada(ArrayList<Asignatura> asignaturasMatricul
             cursoAdemico=Entrada.cadena();
         }while (cursoAdemico.isBlank());
 
-        System.out.println("Selecciona algún grado.");
-        leerGrado();
 
         fecha=leerFecha("Intrduce la fecha de matricualción.");
 
