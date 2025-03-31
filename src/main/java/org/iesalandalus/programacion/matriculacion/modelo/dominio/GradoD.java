@@ -29,7 +29,7 @@ public class GradoD extends Grado {
         if (numAnios != 2 && numAnios != 3) {
             throw new IllegalArgumentException("El número de años para el Grado Dual debe ser 2 o 3.");
         }
-        super.setNumAnios(numAnios);
+
     }
 
 

@@ -1,6 +1,6 @@
 package org.iesalandalus.programacion.matriculacion.modelo.dominio;
 
-public class Grado {
+public abstract class Grado {
 
     protected String nombre;       // Atributo protegido
     protected String iniciales;    // Atributo protegido
@@ -50,18 +50,14 @@ public class Grado {
         return "(" + iniciales + ") - " + nombre;
     }
 
-    // Método setNumAnios con validación para que el número de años sea mayor que 0
-    protected void setNumAnios(int numAnios) {
-        if (numAnios <= 0) {
-            throw new IllegalArgumentException("El número de años debe ser mayor que 0.");
-        }
-        this.numAnios = numAnios;
-    }
+
+    protected abstract void setNumAnios(int numAnios);
 
     // Método getNumAnios
     protected int getNumAnios() {
         return numAnios;
     }
 }
+
 
 

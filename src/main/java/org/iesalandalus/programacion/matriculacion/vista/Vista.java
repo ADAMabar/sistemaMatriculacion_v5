@@ -224,7 +224,7 @@ public class Vista {
                 System.out.println("Ciclo Formativo no existente.");
             }
 
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -356,48 +356,55 @@ public class Vista {
         }
     }
 
-public void mostrarMatriculasPorAlumno() throws OperationNotSupportedException {
-    System.out.println("=====================");
-    System.out.println("Mostrar Matrícula de alumno");
-    System.out.println("=====================");
+public void mostrarMatriculasPorAlumno() {
+  try {
+      System.out.println("=====================");
+      System.out.println("Mostrar Matrícula de alumno");
+      System.out.println("=====================");
 
-    Alumno alumno = Consola.leerAlumnoPorDni();
-    Alumno alumno1 = controlador.buscar(alumno);
+      Alumno alumno = Consola.leerAlumnoPorDni();
+      Alumno alumno1 = controlador.buscar(alumno);
 
-    List<Matricula> matriculas = controlador.getMatriculas(alumno1).stream().sorted(Comparator.comparing(Matricula::getFechaMatriculacion).reversed()
-            .thenComparing(matricula -> matricula.getAlumno().getNombre())).toList();
+      List<Matricula> matriculas = controlador.getMatriculas(alumno1).stream().sorted(Comparator.comparing(Matricula::getFechaMatriculacion).reversed()
+              .thenComparing(matricula -> matricula.getAlumno().getNombre())).toList();
 
 
-    if ( !matriculas.isEmpty()) {
-        System.out.println("Matrículas registradas:");
-        matriculas.forEach(System.out::println);
-    } else {
-        System.out.println("No hay matrículas registradas para este alumno.");
-    }
+      if (!matriculas.isEmpty()) {
+          System.out.println("Matrículas registradas:");
+          matriculas.forEach(System.out::println);
+      } else {
+          System.out.println("No hay matrículas registradas para este alumno.");
+      }
+  }catch (OperationNotSupportedException | IllegalArgumentException e ){
+      System.out.println(e.getMessage());
+  }
 }
 
 
 
-    public void mostrarMatriculasPorCicloFormativo()  throws IllegalArgumentException,OperationNotSupportedException,NullPointerException {
+    public void mostrarMatriculasPorCicloFormativo(){
         System.out.println("========================================");
         System.out.println("Mostrar Matrículas por Ciclo Formativo");
         System.out.println("========================================");
 
+ try {
+
+     CicloFormativo cicloFormativo = Consola.getCicloFormativoPorCodigo();
+     CicloFormativo cicloFormativo1 = controlador.buscar(cicloFormativo);
+     List<Matricula> matriculas = controlador.getMatriculas(cicloFormativo1).stream().sorted(Comparator.comparing(Matricula::getFechaMatriculacion).reversed()
+             .thenComparing(matricula -> matricula.getAlumno().getNombre())).toList();
 
 
-            CicloFormativo cicloFormativo = Consola.getCicloFormativoPorCodigo();
-           CicloFormativo cicloFormativo1=controlador.buscar(cicloFormativo);
-        List<Matricula> matriculas = controlador.getMatriculas(cicloFormativo1).stream().sorted(Comparator.comparing(Matricula::getFechaMatriculacion).reversed()
-                .thenComparing(matricula -> matricula.getAlumno().getNombre())).toList();
+     if (!matriculas.isEmpty()) {
+         System.out.println("Matrículas registradas:");
+         matriculas.forEach(System.out::println);
+     } else {
+         System.out.println("No hay matrículas registradas para este cilo formativo.");
+     }
 
-
-        if ( !matriculas.isEmpty()) {
-            System.out.println("Matrículas registradas:");
-            matriculas.forEach(System.out::println);
-        } else {
-            System.out.println("No hay matrículas registradas para este cilo formativo.");
-        }
-
+ }catch (OperationNotSupportedException | IllegalArgumentException | NullPointerException e ){
+     System.out.println(e.getMessage());
+ }
     }
 
     public void mostrarMatriculasPorCursoAcademico() throws IllegalArgumentException, OperationNotSupportedException, NullPointerException {
@@ -417,7 +424,7 @@ public void mostrarMatriculasPorAlumno() throws OperationNotSupportedException {
             System.out.println("Matrículas registradas:");
             matriculas.forEach(System.out::println);
         } else {
-            System.out.println("No hay matrículas registradas para este alumno.");
+            System.out.println("No hay matrículas registradas para este curso academico.");
         }
 
     }
@@ -498,7 +505,7 @@ public void mostrarMatriculasPorAlumno() throws OperationNotSupportedException {
 
         Opcion opcion;
         do {
-            System.out.println("Elige una opción:");
+
             opcion = Consola.elegirOpcion();
             ejecutarOpcion(opcion);
         } while (opcion != Opcion.SALIR );

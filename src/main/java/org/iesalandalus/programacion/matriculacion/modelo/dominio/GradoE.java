@@ -36,5 +36,6 @@ public class GradoE extends Grado {
     public String toString() {
         return super.toString() + " (Grado de 1 año, Ediciones: " + numEdiciones + ")";
     }
+
 }
 

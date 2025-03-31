@@ -34,6 +34,7 @@ public class Consola {
 
     public static Opcion elegirOpcion() {
         mostrarMenu();
+        System.out.print("Elige una opción: ");
         int opcion ;
         while (true) {
 
@@ -75,7 +76,6 @@ public class Consola {
         fechaNacimiento = leerFecha("Introduce una fecha válida en formato dd/MM/YYYY : ");
 
         String fechaNacimientoString = fechaNacimiento.toString();
-
 
 
 
@@ -171,13 +171,13 @@ public class Consola {
         System.out.print("Ingrese la duración del grado (en años): ");
         int duracion = Entrada.entero();
 
-        if (tipoGradoSel == TiposGrado.GRADOD) {
+        if (tipoGradoSel.equals(TiposGrado.GRADOD)) {
 
             Modalidad modalidad = leerModalidad();
 
 
             return new GradoD(nombre, duracion, modalidad);
-        } else if (tipoGradoSel == TiposGrado.GRADOE) {
+        } else if (tipoGradoSel.equals(TiposGrado.GRADOE)) {
 
             System.out.print("Ingrese el número de ediciones del grado: ");
             int numEdiciones = Entrada.entero();
@@ -237,7 +237,7 @@ public class Consola {
         int codigo;
         try {
             codigo = Entrada.entero();
-            Grado grado=new Grado("ficticio");
+            Grado grado=new GradoE("ficticio",1,1);
             return new CicloFormativo(codigo, "FICTICIO",grado , "FICTICO", 12);
         } catch (NumberFormatException e) {
             throw new NumberFormatException("ERROR: Debes introducir numeros.");
@@ -342,7 +342,7 @@ public class Consola {
         return new Asignatura(codigo,nombre,horasAnuales,curso,horasDesdoble,especialidadProfesorado,cicloFormativo);
     }
     public static Asignatura getAsignaturaPorCodigo(){
-        Grado grado=new Grado("ficticio");
+        Grado grado=new GradoE("Fictico",2,1);
         CicloFormativo cicloFormativo =new CicloFormativo(4321,"Informatica",grado,"adads",1200);
         String codigo;
         try {
