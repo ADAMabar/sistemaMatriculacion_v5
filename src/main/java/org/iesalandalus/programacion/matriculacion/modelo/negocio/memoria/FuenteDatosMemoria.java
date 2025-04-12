@@ -17,7 +17,7 @@ public class FuenteDatosMemoria implements IFuenteDatos {
 
     @Override
     public IAsignaturas crearAsignaturas() {
-        return new Asignaturas(); // Asignaturas del paquete memoria
+        return new Asignaturas();
     }
 
     @Override
