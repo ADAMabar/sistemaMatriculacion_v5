@@ -1,13 +1,14 @@
-package org.iesalandalus.programacion.matriculacion.modelo.negocio;
+package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
 
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.IAlumnos;
 
 import javax.naming.OperationNotSupportedException;
 
 import java.util.ArrayList;
 
 
-public class Alumnos {
+public class Alumnos implements IAlumnos {
     private ArrayList<Alumno> coleccionAlumnos;
 
     public Alumnos() {
@@ -69,6 +70,17 @@ public class Alumnos {
         }
 
         throw new OperationNotSupportedException("ERROR: No existe ningún alumno como el indicado.");
+    }
+
+    @Override
+    public void comenzar() {
+
+        System.out.println("Comenzar alumnos");
+    }
+
+    @Override
+    public void terminar() {
+        System.out.println("Terminar alumno");
     }
 }
 

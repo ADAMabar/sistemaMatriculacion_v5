@@ -2,17 +2,6 @@
 package org.iesalandalus.programacion.matriculacion.negocio;
 
 
-import org.iesalandalus.programacion.matriculacion.MainApp;
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.Asignaturas;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import javax.naming.OperationNotSupportedException;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-
 public class AsignaturasTest {
 /*
     private static final String ERROR_CAPACIDAD_NO_CORRECTA = "ERROR: La capacidad debe ser mayor que cero.";

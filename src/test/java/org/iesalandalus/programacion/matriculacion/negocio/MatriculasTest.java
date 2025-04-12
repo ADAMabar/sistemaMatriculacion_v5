@@ -1,19 +1,6 @@
 package org.iesalandalus.programacion.matriculacion.negocio;
 
 
-import org.iesalandalus.programacion.matriculacion.MainApp;
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.Matriculas;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import javax.naming.OperationNotSupportedException;
-
-import java.time.LocalDate;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-
 public class MatriculasTest {
 /*
     private static final String ERROR_NO_EXCEPCION = "No debería haber saltado la excepción.";

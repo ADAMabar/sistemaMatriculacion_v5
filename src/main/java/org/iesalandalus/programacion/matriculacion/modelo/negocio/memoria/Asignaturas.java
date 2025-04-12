@@ -1,11 +1,12 @@
-package org.iesalandalus.programacion.matriculacion.modelo.negocio;
+package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.IAsignaturas;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Asignaturas {
+public class Asignaturas implements IAsignaturas {
     private List<Asignatura> coleccionAsignaturas;
 
     public Asignaturas() {
@@ -65,5 +66,15 @@ public class Asignaturas {
         }
 
         throw new OperationNotSupportedException("ERROR: No existe ninguna asignatura como la indicada.");
+    }
+
+    @Override
+    public void comenzar() {
+        System.out.println("Comenzando asignaturas");
+    }
+
+    @Override
+    public void terminar() {
+        System.out.println("Terminando asignaturas");
     }
 }

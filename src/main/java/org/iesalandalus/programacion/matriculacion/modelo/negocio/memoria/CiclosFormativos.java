@@ -1,5 +1,6 @@
-package org.iesalandalus.programacion.matriculacion.modelo.negocio;
+package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.ICiclosFormativos;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 
 
-public class CiclosFormativos {
+public class CiclosFormativos implements ICiclosFormativos {
 
     private List<CicloFormativo> coleccionCiclosFormativos;
 
@@ -70,6 +71,15 @@ public class CiclosFormativos {
         }
 
         throw new OperationNotSupportedException("ERROR: No existe ningún ciclo formativo como el indicado.");
+    }
+    @Override
+    public void comenzar() {
+        System.out.println("Comenzando ciclo formativo");
+    }
+
+    @Override
+    public void terminar() {
+        System.out.println("Terminar ciclo formativo");
     }
 }
 
