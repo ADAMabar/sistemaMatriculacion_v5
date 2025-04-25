@@ -4,31 +4,53 @@ import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Matricula;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria.Alumnos;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria.Asignaturas;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria.CiclosFormativos;
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria.Matriculas;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.*;
+
+
 
 import javax.naming.OperationNotSupportedException;
 import java.util.List;
 
 
 public class Modelo {
-    public static final int CAPACIDAD = 3;
-    private Alumnos alumnos;
-    private CiclosFormativos ciclosFormativos;
-    private Asignaturas asignaturas;
-    private Matriculas matriculas;
+    private IFuenteDatos fuenteDatos;
+    private IAlumnos alumnos;
+    private ICiclosFormativos ciclosFormativos;
+    private IAsignaturas asignaturas;
+    private IMatriculas matriculas;
 
-    public void comenzar(){
-        alumnos = new Alumnos();
-        matriculas = new Matriculas();
-        asignaturas = new Asignaturas();
-        ciclosFormativos = new CiclosFormativos();
+    public Modelo(IFuenteDatos fuenteDatos) {
+        this.fuenteDatos = fuenteDatos;
     }
-    public void terminar(){
+
+    public void setFuenteDatos(IFuenteDatos fuenteDatos) {
+        this.fuenteDatos = fuenteDatos;
+    }
+
+    public void comenzar() {
+        alumnos = fuenteDatos.crearAlumnos();
+        ciclosFormativos = fuenteDatos.crearCiclosFormativos();
+        asignaturas = fuenteDatos.crearAsignaturas();
+        matriculas = fuenteDatos.crearMatriculas();
+    }
+
+    public void terminar() {
+        if (alumnos != null) {
+            alumnos.terminar();
+        }
+        if (ciclosFormativos != null) {
+            ciclosFormativos.terminar();
+        }
+        if (asignaturas != null) {
+            asignaturas.terminar();
+        }
+        if (matriculas != null) {
+            matriculas.terminar();
+        }
         System.out.println("Modelo terminado.");
     }
+
+
 
     public void insertar(Alumno alumno) throws OperationNotSupportedException,IllegalArgumentException,NullPointerException {
         alumnos.insertar(alumno);
@@ -91,13 +113,13 @@ public class Modelo {
     public List<Matricula> getMatriculas() throws OperationNotSupportedException ,IllegalArgumentException,NullPointerException {
         return matriculas.get();
     }
-    public List<Matricula> getMatriculas(Alumno alumno) throws IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(Alumno alumno) throws IllegalArgumentException,NullPointerException,OperationNotSupportedException  {
         return matriculas.get(alumno);
     }
-    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) throws IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(CicloFormativo cicloFormativo) throws IllegalArgumentException,NullPointerException,OperationNotSupportedException {
         return matriculas.get(cicloFormativo);
     }
-    public List<Matricula> getMatriculas(String cursoAcademico) throws IllegalArgumentException,NullPointerException  {
+    public List<Matricula> getMatriculas(String cursoAcademico) throws IllegalArgumentException,NullPointerException,OperationNotSupportedException  {
         return matriculas.get(cursoAcademico);
     }
 }

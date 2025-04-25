@@ -12,7 +12,7 @@ public interface ICiclosFormativos {
 
     CicloFormativo buscar(CicloFormativo cicloFormativo);
 
-    CicloFormativo borrar(CicloFormativo cicloFormativo) throws OperationNotSupportedException;
+       void borrar(CicloFormativo cicloFormativo) throws OperationNotSupportedException;
 
     List<CicloFormativo> get();
 

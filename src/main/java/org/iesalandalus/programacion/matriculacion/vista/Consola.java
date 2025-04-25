@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
 
-import org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria.Asignaturas;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.mysql.Asignaturas;
 
 import org.iesalandalus.programacion.utilidades.Entrada;
 

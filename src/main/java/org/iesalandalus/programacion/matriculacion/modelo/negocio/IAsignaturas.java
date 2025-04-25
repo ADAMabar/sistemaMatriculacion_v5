@@ -1,6 +1,6 @@
 package org.iesalandalus.programacion.matriculacion.modelo.negocio;
 
-import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
+
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
 
 
@@ -16,7 +16,7 @@ public interface IAsignaturas {
 
         Asignatura buscar(Asignatura asignatura);
 
-        Asignatura borrar(Asignatura asignatura) throws OperationNotSupportedException;
+       void borrar(Asignatura asignatura) throws OperationNotSupportedException;
 
         List<Asignatura> get();
 

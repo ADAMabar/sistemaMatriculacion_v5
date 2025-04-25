@@ -2,14 +2,13 @@ package org.iesalandalus.programacion.matriculacion.modelo.dominio;
 
 public abstract class Grado {
 
-    protected String nombre;       // Atributo protegido
-    protected String iniciales;    // Atributo protegido
-    protected int numAnios;        // Atributo protegido
+    protected String nombre;
+    protected String iniciales;
+    protected int numAnios;
 
-    // Constructor
+
     public Grado(String nombre) {
-        this.setNombre(nombre);  // Usamos el setter para validar el nombre y establecer iniciales
-        // No asignamos directamente numAnios, ya que se establece por separado
+        this.setNombre(nombre);
     }
 
 
@@ -30,7 +29,6 @@ public abstract class Grado {
         return iniciales;
     }
 
-    // Método setIniciales que genera las iniciales del grado en mayúsculas
     private void setIniciales() {
         String[] palabras = nombre.split(" ");
         StringBuilder inicialesBuilder = new StringBuilder();
@@ -53,8 +51,8 @@ public abstract class Grado {
 
     protected abstract void setNumAnios(int numAnios);
 
-    // Método getNumAnios
-    protected int getNumAnios() {
+
+    public int getNumAnios() {
         return numAnios;
     }
 }

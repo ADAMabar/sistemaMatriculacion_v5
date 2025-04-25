@@ -4,16 +4,15 @@ import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IAlumnos {
     void comenzar();
     void terminar();
-    ArrayList<Alumno> get();
-
-
+    List<Alumno> get();
     int getTamano();
     void insertar(Alumno alumno) throws OperationNotSupportedException;
     Alumno buscar(Alumno alumno);
-    Alumno borrar(Alumno alumno) throws OperationNotSupportedException;
+     void borrar(Alumno alumno) throws OperationNotSupportedException;
 
 }
