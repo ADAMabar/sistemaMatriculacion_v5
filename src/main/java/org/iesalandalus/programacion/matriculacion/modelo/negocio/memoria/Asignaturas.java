@@ -2,6 +2,7 @@ package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Asignatura;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.IAsignaturas;
 
+
 import javax.naming.OperationNotSupportedException;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,21 +53,21 @@ public class Asignaturas implements IAsignaturas {
         return null;
     }
 
-    public Asignatura borrar(Asignatura asignatura) throws OperationNotSupportedException {
+    public void borrar(Asignatura asignatura) throws OperationNotSupportedException {
         if (asignatura == null) {
             throw new NullPointerException("ERROR: No se puede borrar una asignatura nula.");
         }
 
-
         for (int i = 0; i < getTamano(); i++) {
             if (coleccionAsignaturas.get(i).equals(asignatura)) {
                 coleccionAsignaturas.remove(i);
-                return asignatura;
+                return;
             }
         }
 
         throw new OperationNotSupportedException("ERROR: No existe ninguna asignatura como la indicada.");
     }
+
 
     @Override
     public void comenzar() {

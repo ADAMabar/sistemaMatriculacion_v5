@@ -1,4 +1,5 @@
 package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
+
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.CicloFormativo;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.ICiclosFormativos;
 
@@ -57,21 +58,22 @@ public class CiclosFormativos implements ICiclosFormativos {
         return null;
     }
 
-    public CicloFormativo borrar(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
+    public void borrar(CicloFormativo cicloFormativo) throws OperationNotSupportedException {
         if (cicloFormativo == null) {
             throw new NullPointerException("ERROR: No se puede borrar un ciclo formativo nulo.");
         }
 
-
         for (int i = 0; i < getTamano(); i++) {
             if (coleccionCiclosFormativos.get(i).equals(cicloFormativo)) {
                 coleccionCiclosFormativos.remove(i);
-                return cicloFormativo;
+                return;
             }
         }
 
         throw new OperationNotSupportedException("ERROR: No existe ningún ciclo formativo como el indicado.");
     }
+
+
     @Override
     public void comenzar() {
         System.out.println("Comenzando ciclo formativo");

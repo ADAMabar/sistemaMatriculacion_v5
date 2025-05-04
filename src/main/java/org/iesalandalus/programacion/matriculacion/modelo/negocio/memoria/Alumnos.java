@@ -3,10 +3,9 @@ package org.iesalandalus.programacion.matriculacion.modelo.negocio.memoria;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.Alumno;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.IAlumnos;
 
+
 import javax.naming.OperationNotSupportedException;
-
 import java.util.ArrayList;
-
 
 public class Alumnos implements IAlumnos {
     private ArrayList<Alumno> coleccionAlumnos;
@@ -56,25 +55,24 @@ public class Alumnos implements IAlumnos {
         return null;
     }
 
-    public Alumno borrar(Alumno alumno) throws OperationNotSupportedException {
+    public void borrar(Alumno alumno) throws OperationNotSupportedException {
         if (alumno == null) {
             throw new NullPointerException("ERROR: No se puede borrar un alumno nulo.");
         }
 
-
         for (int i = 0; i < getTamano(); i++) {
             if (coleccionAlumnos.get(i).equals(alumno)) {
                 coleccionAlumnos.remove(i);
-                return alumno;
+                return;
             }
         }
 
         throw new OperationNotSupportedException("ERROR: No existe ningún alumno como el indicado.");
     }
 
+
     @Override
     public void comenzar() {
-
         System.out.println("Comenzar alumnos");
     }
 
@@ -83,4 +81,3 @@ public class Alumnos implements IAlumnos {
         System.out.println("Terminar alumno");
     }
 }
-
