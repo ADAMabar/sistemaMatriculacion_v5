@@ -30,7 +30,7 @@ public class CiclosFormativos implements ICiclosFormativos {
         }
         return instancia;
     }
-
+//
     public void comenzar() {
         conexion = MySQL.establecerConexion();
     }

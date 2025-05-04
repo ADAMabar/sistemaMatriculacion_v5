@@ -98,7 +98,7 @@ public class Alumnos implements IAlumnos {
         }
     }
 
-    // Busca un alumno por dni
+    // Busca un alumno por dni.
     public Alumno buscar(Alumno alumno) {
         String sql = "SELECT * FROM alumno WHERE dni = ?";
         try (PreparedStatement ps = conection.prepareStatement(sql)) {
