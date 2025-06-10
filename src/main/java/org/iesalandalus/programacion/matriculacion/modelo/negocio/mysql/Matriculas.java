@@ -112,53 +112,39 @@ public class Matriculas implements IMatriculas {
             e.printStackTrace();
         }
         return total;
+
+
     }
 
-    private List<Asignatura> getAsignaturasMatricula(int idMatricula) {
-        List<Asignatura> asignaturas = new ArrayList<>();
-        try {
-            String sql = """
-                SELECT a.*, c.*, am.*
+    private ArrayList<Asignatura> getAsignaturasMatricula(int idMatricula) throws SQLException {
+        String consulta = """
+                			SELECT a.codigo
+                	, a.nombre
+                	, a.horasAnuales
+                	, a.curso
+                	, a.horasDesdoble
+                	, a.especialidadProfesorado
+                	, a.codigoCicloFormativo
                 FROM asignaturasMatricula am
-                JOIN asignatura a ON am.codigo = a.codigo
-                JOIN cicloFormativo c ON a.codigo = c.codigo
+                LEFT JOIN asignatura a ON am.codigo = a.codigo
                 WHERE am.idMatricula = ?
                 """;
-            PreparedStatement ps = conexion.prepareStatement(sql);
-            ps.setInt(1, idMatricula);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Grado grado = CiclosFormativos.getInstancia().getGrado(
-                        rs.getString("grado"),
-                        rs.getString("nombreGrado"),
-                        rs.getInt("numAniosGrado"),
-                        rs.getString("modalidad"),
-                        rs.getInt("numEdiciones")
-                );
-
-                CicloFormativo ciclo = new CicloFormativo(
-                        rs.getInt("codigo"),
-                        rs.getString("familiaProfesional"),
-                        grado,
-                        rs.getString("nombre"),
-                        rs.getInt("horas")
-                );
-
-                Asignatura asignatura = new Asignatura(
-                        rs.getString("codigo"),
-                        rs.getString("nombre"),
-                        rs.getInt("horasAnuales"),
-                        Curso.valueOf(rs.getString("curso")),
-                        rs.getInt("horasDesdoble"),
-                        EspecialidadProfesorado.valueOf(rs.getString("especialidadProfesorado")),
-                        ciclo
-                );
-
-                asignaturas.add(asignatura);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        PreparedStatement pstmt = conexion.prepareStatement(consulta);
+        pstmt.setInt(1, idMatricula);
+        ResultSet resultado = pstmt.executeQuery();
+        ArrayList<Asignatura> asignaturas = new ArrayList<>();
+        while (resultado.next()) {
+            CicloFormativo cicloFormativo = CiclosFormativos.getInstancia().buscar(new CicloFormativo(
+                    resultado.getInt("codigoCicloFormativo"), "ficticio", new GradoE("gradoe", 1, 1), "ficticio", 1));
+            Asignatura asignatura = new Asignatura(
+                    resultado.getString("codigo"),
+                    resultado.getString("nombre"),
+                    resultado.getInt("horasAnuales"),
+                    Curso.valueOf(resultado.getString("curso").toUpperCase()),
+                    resultado.getInt("horasDesdoble"),
+                    EspecialidadProfesorado.valueOf(resultado.getString("especialidadProfesorado").toUpperCase()),
+                    cicloFormativo);
+            asignaturas.add(asignatura);
         }
         return asignaturas;
     }

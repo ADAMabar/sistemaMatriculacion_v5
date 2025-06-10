@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.matriculacion.modelo.negocio.mysql;
 import org.iesalandalus.programacion.matriculacion.modelo.dominio.*;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.IAsignaturas;
+import org.iesalandalus.programacion.matriculacion.modelo.negocio.mysql.CiclosFormativos;
 import org.iesalandalus.programacion.matriculacion.modelo.negocio.mysql.utilidades.MySQL;
 
 import javax.naming.OperationNotSupportedException;
@@ -70,8 +71,11 @@ public class Asignaturas implements IAsignaturas {
 
                 Grado grado = new GradoE("FALSO",1,1);
                 CicloFormativo ciclo = new CicloFormativo(codigoCiclo, "Desconocido", grado, "Desconocido", 1222);
+                CiclosFormativos ciclos = new CiclosFormativos();
+                 CicloFormativo ciclow=ciclos.buscar(ciclo);
 
-                Asignatura asignatura = new Asignatura(codigo, nombre, horasAnuales, curso, horasDesdoble, especialidad, ciclo);
+
+                Asignatura asignatura = new Asignatura(codigo, nombre, horasAnuales, curso, horasDesdoble, especialidad, ciclow);
                 asignaturas.add(asignatura);
             }
 
@@ -145,6 +149,7 @@ public class Asignaturas implements IAsignaturas {
 
                     Grado grado = new GradoD("FALSO", 2, Modalidad.PRESENCIAL);
                     CicloFormativo ciclo = new CicloFormativo(codigoCiclo, "Desconocido", grado, "Desconocido", 1222);
+
 
                     return new Asignatura(codigo, nombre, horasAnuales, curso, horasDesdoble, especialidad, ciclo);
                 }
