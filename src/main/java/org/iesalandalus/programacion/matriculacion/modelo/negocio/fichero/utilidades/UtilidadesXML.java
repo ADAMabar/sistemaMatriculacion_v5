@@ -74,7 +74,7 @@ import java.io.*;
             Document docDOMvacio = null ;
 
             try {
-
+                 /// /////////
                 db = dbf.newDocumentBuilder() ;
 
                 docDOMvacio = db.newDocument();
