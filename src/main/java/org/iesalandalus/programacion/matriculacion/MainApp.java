@@ -19,6 +19,8 @@ public class MainApp {
                 return new Modelo(FactoriaFuenteDatos.MEMORIA.crear());
             case "-fdmysql":
                 return new Modelo(FactoriaFuenteDatos.MYSQL.crear());
+            case "-fdfichero":
+                return new Modelo(FactoriaFuenteDatos.FICHERO.crear());
             default:
                 throw new IllegalArgumentException("Fuente de datos no válida. Use -fdmemoria o -fdmysql");
         }

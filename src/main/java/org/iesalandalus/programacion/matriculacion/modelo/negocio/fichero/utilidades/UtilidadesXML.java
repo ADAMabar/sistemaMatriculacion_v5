@@ -20,15 +20,11 @@ import java.io.*;
         public static Document xmlToDom (String rutaXML) {
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
             DocumentBuilder db;
-
             Document docDOM = null ;
 
             try {
-
                 db = dbf.newDocumentBuilder();
-
                 File ficheroXml = new File(rutaXML);
 
                 docDOM = db.parse(ficheroXml);
@@ -74,7 +70,7 @@ import java.io.*;
             Document docDOMvacio = null ;
 
             try {
-                 /// /////////
+
                 db = dbf.newDocumentBuilder() ;
 
                 docDOMvacio = db.newDocument();
