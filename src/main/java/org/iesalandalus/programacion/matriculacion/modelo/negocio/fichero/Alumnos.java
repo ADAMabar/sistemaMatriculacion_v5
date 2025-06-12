@@ -64,6 +64,7 @@ public class Alumnos implements IAlumnos {
                 }
             }
         }
+        System.out.println("Se ha leido correctamente");
     }
 
     private Alumno elementToAlumno(Element alumnoDOM) {
@@ -88,21 +89,51 @@ public class Alumnos implements IAlumnos {
     }
 
     private void escribirXML() {
-        Document DOMAlumnos = UtilidadesXML.crearDomVacio("Alumnos");
-        Element raizDOM = DOMAlumnos.getDocumentElement();
+        try {
 
-        if (!coleccionAlumnos.isEmpty()) {
-            for (Alumno alum : coleccionAlumnos) {
-                Element alumnoDOM = alumnoToElement(DOMAlumnos, alum);
-                raizDOM.appendChild(alumnoDOM);
+            File fichero = new File(RUTA_FICHERO);
+            if (fichero.getParentFile() != null && !fichero.getParentFile().exists()) {
+                if (fichero.getParentFile().mkdirs()) {
+                    System.out.println("Directorio creado: " + fichero.getParentFile().getAbsolutePath());
+                } else {
+                    System.err.println("No se pudo crear el directorio: " + fichero.getParentFile().getAbsolutePath());
+                    return;
+                }
             }
+
+            
+            Document DOMAlumnos = UtilidadesXML.crearDomVacio("Alumnos");
+            if (DOMAlumnos == null) {
+                System.err.println("Error al crear el Document vacío.");
+                return;
+            }
+
+
+            Element raizDOM = DOMAlumnos.getDocumentElement();
+            if (!coleccionAlumnos.isEmpty()) {
+                for (Alumno alum : coleccionAlumnos) {
+                    Element alumnoDOM = alumnoToElement(DOMAlumnos, alum);
+                    raizDOM.appendChild(alumnoDOM);
+                }
+                System.out.println("Se añadieron " + coleccionAlumnos.size() + " alumnos al Document.");
+            } else {
+
+                Element mensaje = DOMAlumnos.createElement("Mensaje");
+                mensaje.setTextContent("No hay alumnos registrados.");
+                raizDOM.appendChild(mensaje);
+                System.out.println("La colección de alumnos está vacía. Se añadió un mensaje al XML.");
+            }
+
+
+            UtilidadesXML.domToXml(DOMAlumnos, RUTA_FICHERO);
+            System.out.println("Archivo XML escrito exitosamente en: " + RUTA_FICHERO);
+
+        } catch (Exception e) {
+            System.err.println("Error al escribir el archivo XML: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        File fichero = new File(RUTA_FICHERO);
-        fichero.getParentFile().mkdirs();
-
-        UtilidadesXML.domToXml(DOMAlumnos, RUTA_FICHERO);
     }
+
 
     private Element alumnoToElement(Document DOMAlumnos, Alumno alumno) {
         Element alumnoDOM = DOMAlumnos.createElement("Alumno");

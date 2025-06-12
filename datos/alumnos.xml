@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Alumnos>
-
-  </Alumnos>
+    <Alumno Dni="12345678Z">
+        <Nombre>Adam Barhoumi</Nombre>
+        <Telefono>123456789</Telefono>
+        <Correo>ADAM@GAMIL.COM</Correo>
+        <FechaNacimiento>12/12/2000</FechaNacimiento>
+    </Alumno>
+</Alumnos>

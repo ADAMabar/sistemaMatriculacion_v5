@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Matriculas>
-
+    <Matricula Alumno="12345678Z" Id="1234">
+        <CursoAcademico>12-12</CursoAcademico>
+        <FechaMatriculacion>12/06/2025</FechaMatriculacion>
+        <FechaAnulacion/>
+        <Asignaturas>
+            <Asignatura Codigo="4321"/>
+        </Asignaturas>
+    </Matricula>
 </Matriculas>

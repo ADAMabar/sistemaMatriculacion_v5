@@ -26,10 +26,8 @@ import java.io.*;
             try {
                 db = dbf.newDocumentBuilder();
                 File ficheroXml = new File(rutaXML);
-
                 docDOM = db.parse(ficheroXml);
                 return docDOM;
-
             } catch(ParserConfigurationException | SAXException | IOException ex) {
                 System.out.println(ex.getMessage());
             }
@@ -38,22 +36,18 @@ import java.io.*;
 
         public static void domToXml (Document DOM, String rutaXml) {
             try {
-
                 File f = new File(rutaXml);
+                if (f.getParentFile() != null && !f.getParentFile().exists()) {
+                    f.getParentFile().mkdirs();
+                }
 
                 FileOutputStream fos = new FileOutputStream(f);
-
                 DOMSource source = new DOMSource(DOM);
-
                 StreamResult result = new StreamResult (new OutputStreamWriter (fos,"UTF-8"));
-
                 TransformerFactory tFactory = TransformerFactory.newInstance();
-
                 tFactory.setAttribute("indent-number", Integer.valueOf(4));
-
                 Transformer transformer = tFactory.newTransformer();
                 transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-
                 transformer.transform(source, result);
 
             } catch (TransformerException | FileNotFoundException | UnsupportedEncodingException ex) {
@@ -61,26 +55,17 @@ import java.io.*;
             }
         }
 
+
         public static Document crearDomVacio(String etiquetaRaiz) {
 
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-
             DocumentBuilder db;
-
             Document docDOMvacio = null ;
-
             try {
-
                 db = dbf.newDocumentBuilder() ;
-
                 docDOMvacio = db.newDocument();
-
                 Element elementoRaiz = docDOMvacio.createElement(etiquetaRaiz);
-
-                docDOMvacio.appendChild(elementoRaiz);
-
-                return docDOMvacio;
-
+                docDOMvacio.appendChild(elementoRaiz);return docDOMvacio;
             } catch (ParserConfigurationException ex) {
                 System.out.println(ex.getMessage());
             }

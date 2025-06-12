@@ -2,10 +2,12 @@ package org.iesalandalus.programacion.matriculacion;
 import org.iesalandalus.programacion.matriculacion.controlador.Controlador;
 import org.iesalandalus.programacion.matriculacion.modelo.FactoriaFuenteDatos;
 import org.iesalandalus.programacion.matriculacion.modelo.Modelo;
+;
 import org.iesalandalus.programacion.matriculacion.vista.*;
 
 
 import javax.naming.OperationNotSupportedException;
+
 
 
 public class MainApp {

@@ -195,10 +195,10 @@ public class Asignaturas implements IAsignaturas {
                 raizDOM.appendChild(asignaturaDOM);
             }
         }
-
         File fichero = new File(RUTA_FICHERO);
-        fichero.getParentFile().mkdirs();
-
+        if (!fichero.getParentFile().exists()) {
+            fichero.getParentFile().mkdirs();
+        }
         UtilidadesXML.domToXml(DOMAsignaturas, RUTA_FICHERO);
     }
 
