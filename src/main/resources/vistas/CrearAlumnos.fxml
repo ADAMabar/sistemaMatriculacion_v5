@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="690.0" style="-fx-background-color: #d7eff7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.matriculacion.vista.grafica.controladores.ControladorCrearAlumnos">
+    <children>
+        <HBox fx:id="hbNombreAlumno" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <children>
+                <Label prefHeight="18.0" prefWidth="119.0" text="Nombre del Alumno" />
+                <TextField fx:id="tfNombreAlumno">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </TextField>
+            </children>
+            <VBox.margin>
+                <Insets left="20.0" top="10.0" />
+            </VBox.margin>
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+        </HBox>
+        <HBox fx:id="hbTelefonoAlumno" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <children>
+                <Label prefHeight="18.0" prefWidth="117.0" text="Teléfono" />
+                <TextField fx:id="tfTelefonoAlumno" />
+            </children>
+            <VBox.margin>
+                <Insets left="20.0" top="10.0" />
+            </VBox.margin>
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+        </HBox>
+        <HBox fx:id="hbCorreoAlumno" layoutX="10.0" layoutY="110.0" prefHeight="68.0" prefWidth="670.0" spacing="20.0">
+            <children>
+                <Label prefHeight="18.0" prefWidth="117.0" text="Correo">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="tfCorreoAlumno" />
+            </children>
+            <VBox.margin>
+                <Insets left="20.0" top="10.0" />
+            </VBox.margin>
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+        </HBox>
+        <HBox fx:id="hbDniAlumno" layoutX="10.0" layoutY="210.0" prefHeight="64.0" prefWidth="670.0" spacing="20.0">
+            <children>
+                <Label prefHeight="18.0" prefWidth="116.0" text="Dni del Alumno" />
+                <TextField fx:id="tfDniAlumno" />
+            </children>
+            <VBox.margin>
+                <Insets left="20.0" top="10.0" />
+            </VBox.margin>
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+        </HBox>
+        <HBox fx:id="hbFechaNac" layoutX="10.0" layoutY="310.0" prefHeight="32.0" prefWidth="580.0" spacing="20.0">
+            <children>
+                <Label text="Fecha de Nacimiento" />
+                <DatePicker fx:id="dpFechaNac" />
+                <Button fx:id="btnAceptarAlumno" mnemonicParsing="false" onAction="#insertarAlumno" text="Aceptar">
+                    <HBox.margin>
+                        <Insets left="100.0" />
+                    </HBox.margin>
+                </Button>
+            </children>
+            <padding>
+                <Insets bottom="10.0" top="20.0" />
+            </padding>
+            <VBox.margin>
+                <Insets left="20.0" top="10.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>

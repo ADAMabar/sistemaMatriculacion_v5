@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="815.0" style="-fx-background-color: #d7eff7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.matriculacion.vista.grafica.controladores.ControladorCrearCiclosFormativos">
+    <children>
+        <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <children>
+                <Label prefHeight="18.0" prefWidth="153.0" text="Codigo" />
+                <TextField fx:id="tfcodigoCiclo" />
+                <Label text="El codigo debe ser de 4 digitos" textFill="#a19d9d" />
+            </children>
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <children>
+                <Label fx:id="tfFamiliaProfesional" prefHeight="18.0" prefWidth="151.0" text="Familia Profesional" />
+                <TextField fx:id="tfFamiliaCiclo">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </TextField>
+            </children>
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="110.0" prefHeight="154.0" prefWidth="771.0" spacing="30.0">
+            <children>
+                <Label text="Grado" />
+                <ComboBox fx:id="cbElegirGrado" onAction="#seleccionarGrado" prefHeight="29.0" prefWidth="181.0" />
+                <VBox prefHeight="54.0" prefWidth="157.0">
+                    <children>
+                        <Label fx:id="lbEdiciones" text="Ediciones" visible="false">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="tfEdicionesCiclo" visible="false">
+                            <VBox.margin>
+                                <Insets bottom="20.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <RadioButton fx:id="check1ano" mnemonicParsing="false" text="1 año" visible="false">
+                            <VBox.margin>
+                                <Insets bottom="5.0" />
+                            </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="check2anos" mnemonicParsing="false" text="2 años" visible="false">
+                            <VBox.margin>
+                                <Insets bottom="5.0" />
+                            </VBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="check3anos" mnemonicParsing="false" text="3 años" visible="false" />
+                    </children>
+                </VBox>
+                <VBox prefHeight="54.0" prefWidth="228.0">
+                    <children>
+                        <Label fx:id="lbModalidad" text="Modalidad" visible="false">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="cbModalidad" onAction="#seleccionarModalidad" prefHeight="28.0" prefWidth="194.0" visible="false" />
+                    </children>
+                    <HBox.margin>
+                        <Insets left="30.0" />
+                    </HBox.margin>
+                </VBox>
+            </children>
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="210.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+            <children>
+                <Label prefHeight="18.0" prefWidth="191.0" text="Nombre del Ciclo Formativo" />
+                <TextField fx:id="tfNombreCiclo" />
+            </children>
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+        </HBox>
+        <HBox layoutX="10.0" layoutY="310.0" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <children>
+                <Label text="Horas de duración del ciclo" />
+                <TextField fx:id="tfHorasCiclo" />
+                <Label text="debe ser menor a 2000 horas" textFill="#8c8a8a" />
+                <Button fx:id="btnAceptarCrearCiclo" mnemonicParsing="false" onAction="#CrearCicloFormativo" text="Aceptar" />
+            </children>
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>

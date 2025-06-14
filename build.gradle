@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 group = 'org.example'
@@ -7,17 +8,19 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
-    // Repositorio jitpack.io donde están los accesos a las versiones de la librería entrada desde github
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    // Entrada para que el repositorio jitpack.io sepa acceder a la localización de librería entrada
     implementation 'com.github.JRJimenezReyes:entrada:1.0.3'
     implementation 'mysql:mysql-connector-java:8.0.28'
 
+}
+javafx {
+    version = "18"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 test {

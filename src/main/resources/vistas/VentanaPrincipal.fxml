@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="bdVentanaPrincipal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="1517.0" style="-fx-background-color: #d7eff7;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.matriculacion.vista.grafica.controladores.ControladorVentanaPrincipal">
+    <top>
+        <VBox fx:id="vbBotonesPrincipales" prefHeight="73.0" prefWidth="865.0" BorderPane.alignment="CENTER">
+            <children>
+                <ToolBar fx:id="tbBotonesPrincipales" prefHeight="40.0" prefWidth="200.0" styleClass="button" stylesheets="@../estilos/style.css">
+                    <items>
+                        <Button fx:id="btnCrearAlumnos" mnemonicParsing="false" onAction="#crearAlumnos" prefHeight="47.0" prefWidth="141.0" text="Crear Alumnos"/>
+                        <Button fx:id="btnCrearCiclos" mnemonicParsing="false" onAction="#crearCiclos" prefHeight="46.0" prefWidth="202.0" text="Crear Ciclos Formativos"/>
+                        <Button fx:id="btnCrearAsignaturas" mnemonicParsing="false" onAction="#crearAsignaturas" prefHeight="48.0" prefWidth="176.0" text="Crear Asignaturas"/>
+                        <Button fx:id="btnCrearMatriculas" mnemonicParsing="false" onAction="#crearMatriculas" prefHeight="50.0" prefWidth="179.0" stylesheets="@../estilos/style.css" text="Crear Matriculas"/>
+                    </items>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="10.0" right="10.0" />
+                    </padding>
+                </ToolBar>
+                <HBox fx:id="hbMenuBusqueda" prefHeight="60.0" prefWidth="874.0" />
+            </children>
+        </VBox>
+    </top>
+    <left>
+        <VBox fx:id="vbDesplegables" prefHeight="267.0" prefWidth="0.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets left="10.0" />
+            </BorderPane.margin>
+        </VBox>
+    </left>
+    <center>
+        <VBox prefHeight="605.0" prefWidth="1507.0" BorderPane.alignment="CENTER">
+            <children>
+                <TabPane fx:id="tabPanePrincipal" prefHeight="585.0" prefWidth="1507.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Inicio">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tabAlumnos" text="Alumnos">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="238.0" prefWidth="797.0">
+                                    <children>
+                                        <TableView fx:id="tablCentralBusquedasAlumno" layoutY="54.0" prefHeight="240.0" prefWidth="1338.0">
+                                            <columns>
+                                                <TableColumn fx:id="tablColum1" prefWidth="392.0" text="Nombre" />
+                                                <TableColumn fx:id="tablColum2" prefWidth="128.0" text="Telefono" />
+                                                <TableColumn fx:id="tablColum3" prefWidth="363.2" text="Correo" />
+                                                <TableColumn fx:id="tablColum4" prefWidth="237.6" text="Dni" />
+                                                <TableColumn fx:id="tablColum5" prefWidth="217.6" text="Fecha de Nacimiento" />
+                                            </columns>
+                                        </TableView>
+                                        <TextField fx:id="tfBusquedaAlumno" layoutX="14.0" layoutY="14.0" onAction="#buscarAlumno" prefHeight="20.0" prefWidth="577.0" promptText="realiza aqui la busqueda del alumno por su nombre" />
+                                        <Button fx:id="btnBorrarAlumno" layoutX="668.0" layoutY="4.0" mnemonicParsing="false" onAction="#borrarAlumno" prefHeight="39.0" prefWidth="195.0" text="Borrar Alumno"/>
+                                        <TableView fx:id="tablFiltro" layoutX="-6.0" layoutY="294.0" prefHeight="235.0" prefWidth="1518.0">
+                                            <columns>
+                                                <TableColumn fx:id="nombreAlumno" prefWidth="304.0" text="Alumno" />
+                                                <TableColumn fx:id="cicloFormativoAlumno" prefWidth="285.6" text="Ciclo Formativo Matriculado" />
+                                                <TableColumn fx:id="FechaMatriculacionAlumno" prefWidth="131.2" text="Fecha Matriculación" />
+                                                <TableColumn fx:id="FechaAnulacionAlumno" prefWidth="117.6" text="Fecha Anulación" />
+                                                <TableColumn fx:id="cursoAcademico" prefWidth="156.0" text="Curso Academico" />
+                                                <TableColumn fx:id="asignaturasAlumno" prefWidth="528.0" text="Asignaturas" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tabCiclos" text="Ciclos Formativos">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <TableView fx:id="tablCiclosFormativos" layoutX="-3.0" layoutY="58.0" prefHeight="260.0" prefWidth="1347.0">
+                                            <columns>
+                                                <TableColumn fx:id="columCicloCodigo" prefWidth="84.0" text="Codigo" />
+                                                <TableColumn fx:id="columCicloFamPro" prefWidth="168.8" text="Familia Profesional" />
+                                                <TableColumn fx:id="columCicloGrado" prefWidth="692.0" text="Información del Grado" />
+                                                <TableColumn fx:id="columCicloNombre" prefWidth="249.6" text="Nombre Ciclo" />
+                                                <TableColumn fx:id="columCicloHoras" prefWidth="152.8" text="Horas" />
+                                            </columns>
+                                        </TableView>
+                                        <TextField fx:id="buscarCiclos" layoutX="14.0" layoutY="14.0" onAction="#buscarCiclos" prefHeight="25.0" prefWidth="579.0" promptText="Realiza aqui la busqueda por el nombre del ciclo formativo" />
+                                        <Button fx:id="btnBorrarCiclo" layoutX="659.0" layoutY="6.0" mnemonicParsing="false" onAction="#borrarCiclo" prefHeight="38.0" prefWidth="199.0" text="Borrar Ciclo Formativo"/>
+                                        <TableView fx:id="tabFiltroCiclo" layoutX="-12.0" layoutY="318.0" prefHeight="230.0" prefWidth="1518.0">
+                                            <columns>
+                                                <TableColumn fx:id="cicloCodigo" prefWidth="93.6" text="Codigo Ciclo" />
+                                                <TableColumn fx:id="cicloNombre" prefWidth="318.4" text="Nombre Ciclo Formativo" />
+                                                <TableColumn fx:id="cicloAsignaturas" prefWidth="143.2" text="Asignaturas" />
+                                                <TableColumn fx:id="cicloIdMatricula" prefWidth="148.0" text="ID matricula" />
+                                                <TableColumn fx:id="cicloCurso" prefWidth="129.6" text="Curso Academico" />
+                                                <TableColumn fx:id="cicloAlumnos" prefWidth="684.0" text="Alumno" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tabAsignaturas" text="Asignaturas">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <TableView fx:id="tablAsignaturasMostrar" layoutY="50.0" prefHeight="262.0" prefWidth="1462.0">
+                                            <columns>
+                                                <TableColumn fx:id="columCodigoAsignatura" prefWidth="78.0" text="Codigo" />
+                                                <TableColumn fx:id="ColumNombreAsignatura" prefWidth="156.0" text="Nombre" />
+                                                <TableColumn fx:id="columHorasAnuales" prefWidth="89.6" text="Horas Anuales" />
+                                                <TableColumn fx:id="columCurso" prefWidth="81.6" text="Curso" />
+                                                <TableColumn fx:id="columHorasDesdoble" prefWidth="102.4" text="Horas Desdoble" />
+                                                <TableColumn fx:id="columEspecialidad" prefWidth="175.2" text="Especialidad Profesorado" />
+                                                <TableColumn fx:id="columCodigoCiclo" prefWidth="904.8" text="Ciclo Formativo" />
+                                            </columns>
+                                        </TableView>
+                                        <TextField fx:id="tfbuscarAsignaturas" layoutX="9.0" layoutY="14.0" onAction="#buscarAsignaturas" prefHeight="25.0" prefWidth="582.0" promptText="Realiza aqui la busqueda por el nombre de la asignatura" />
+                                        <Button fx:id="btnBorrarAsignatura" layoutX="668.0" layoutY="5.0" mnemonicParsing="false" onAction="#borrarAsignatura" prefHeight="38.0" prefWidth="175.0" text="   Borrar Asignatura"/>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab fx:id="tabMatriculas" text="Matriculas">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <TableView fx:id="tablMatriculasMostrar" layoutY="55.0" prefHeight="258.0" prefWidth="1339.0">
+                                            <columns>
+                                                <TableColumn fx:id="columIdMatricula" prefWidth="75.0" text="Id Matricula" />
+                                                <TableColumn fx:id="columCursoAcademico" prefWidth="120.8" text="Curso Academico" />
+                                                <TableColumn fx:id="columFechaMatriculacion" prefWidth="132.0" text="Fecha Matriculacion" />
+                                                <TableColumn fx:id="columFechaAnulacion" prefWidth="113.6" text="Fecha Anulacion" />
+                                                <TableColumn fx:id="columDniMatricula" prefWidth="893.6" text="Alumno" />
+                                            </columns>
+                                        </TableView>
+                                        <TextField fx:id="buscarMatriculas" layoutX="15.0" layoutY="14.0" onAction="#buscarMatricula" prefHeight="25.0" prefWidth="574.0" promptText="Realiza aqui la busqueda por el Id de la matricula" />
+                                        <Button fx:id="btnBorrarMatricula" layoutX="660.0" layoutY="5.0" mnemonicParsing="false" onAction="#anularMatricula" prefHeight="48.0" prefWidth="190.0" text="  Anular Matricula"/>
+                                        <TableView fx:id="tablFiltroCursoAcademico" layoutY="295.0" prefHeight="258.0" prefWidth="1534.0">
+                                            <columns>
+                                                <TableColumn fx:id="matriculaAlumno" prefWidth="151.2" text="Nombre Alumno" />
+                                                <TableColumn fx:id="matriculaDniAlumno" prefWidth="139.2" text="DNI Alumno" />
+                                                <TableColumn fx:id="matriculaCursoAcademico" prefWidth="105.6" text="Curso Academico" />
+                                                <TableColumn fx:id="matriculaAsignaturas" prefWidth="656.0" text="Asignaturas" />
+                                                <TableColumn fx:id="matriculaId" prefWidth="91.2" text="Id Matricula" />
+                                                <TableColumn fx:id="matriculaMatriculacionFecha" prefWidth="168.0" text="Fecha Matriculacion" />
+                                                <TableColumn fx:id="matriculaAnulacionFecha" minWidth="0.0" prefWidth="223.2" text="Fecha Anulacion" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>
