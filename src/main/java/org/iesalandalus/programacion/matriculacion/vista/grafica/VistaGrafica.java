@@ -21,7 +21,6 @@ import org.iesalandalus.programacion.matriculacion.vista.Vista;
 
         @Override
         public void terminar() {
-            //getControlador().terminar();
             controlador.terminar();
         }
     }

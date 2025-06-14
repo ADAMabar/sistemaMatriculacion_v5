@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class Dialogos {
 
-    private static final String CSS = LocalizadorRecursos.class.getResource("estilos/estilos.css").toExternalForm();
+    private static final String CSS = LocalizadorRecursos.class.getResource("org/iesalandalus/programacion/matriculacion/vista/grafica/recursos/estilos/estilos.css").toExternalForm();
 
     private Dialogos() {
 

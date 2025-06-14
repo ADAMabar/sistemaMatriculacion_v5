@@ -20,7 +20,9 @@ public class LanzadoraVentanaPrincipal extends Application {
     public void start(Stage escenarioPrincipal)  {
 
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/VentanaPrincipal.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    LocalizadorRecursos.class.getResource("vistas/VentanaPrincipal.fxml")
+            );
             Parent raiz = fxmlLoader.load();
 
             Scene escena = new Scene(raiz/*, 600, 600*/);
